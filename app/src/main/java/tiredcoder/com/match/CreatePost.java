@@ -19,39 +19,35 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 
-public class SignUpActivity extends AsyncTask<String,String,String> {
+public class CreatePost extends AsyncTask<String,String,String> {
     Context context;
+    PostClass postClass;
     JSONObject jsonObject;
-    ProgressDialog dialog;
-    SignUpActivity(Context context)
+    CreatePost(Context context,PostClass postClass)
     {
         this.context=context;
+        this.postClass=postClass;
     }
     protected  void onPreExecute()
     {
-        dialog=new ProgressDialog(context);
-        dialog.setIndeterminate(false);
-        dialog.setMessage("Creating Account");
-        dialog.show();
 
     }
     protected  String doInBackground(String ... args)
     {
-        String name=args[0];
-        String emailid=args[1];
-        String mobileno=args[2];
-        String password=args[3];
+
         try
         {
-            String link="http://192.168.1.101/myfiles/login.php";
+            String link="http://192.168.1.101/myfiles/post.php";
             String data;
-            data = URLEncoder.encode("name","UTF-8")+"="+URLEncoder.encode(name,"UTF-8");
-            data+="&" + URLEncoder.encode("email", "UTF-8") + "=" +
-                    URLEncoder.encode(emailid, "UTF-8");
-            data+="&" + URLEncoder.encode("password", "UTF-8") + "=" +
-                    URLEncoder.encode(password, "UTF-8");
-            data+="&" + URLEncoder.encode("mobile_number", "UTF-8") + "=" +
-                    URLEncoder.encode(mobileno, "UTF-8");
+            data = URLEncoder.encode("name","UTF-8")+"="+URLEncoder.encode(postClass.getName(),"UTF-8");
+            data+="&" + URLEncoder.encode("message", "UTF-8") + "=" +
+                    URLEncoder.encode(postClass.getMessage(), "UTF-8");
+            data+="&" + URLEncoder.encode("mobile", "UTF-8") + "=" +
+                    URLEncoder.encode(postClass.getMobileno(), "UTF-8");
+            data+="&" + URLEncoder.encode("booking_id", "UTF-8") + "=" +
+                    URLEncoder.encode(postClass.getBooking_id(), "UTF-8");
+            data+="&" + URLEncoder.encode("date", "UTF-8") + "=" +
+                    URLEncoder.encode(postClass.getDate(), "UTF-8");
             URL url=new URL(link);
             URLConnection connection=url.openConnection();
             connection.setDoOutput(true);
@@ -82,7 +78,7 @@ public class SignUpActivity extends AsyncTask<String,String,String> {
     }
     @Override
     protected void onPostExecute(String result){
-      dialog.dismiss();
+       // dialog.dismiss();
         int success= 0;
         try {
             success = jsonObject.getInt("success");
@@ -90,11 +86,11 @@ public class SignUpActivity extends AsyncTask<String,String,String> {
             e.printStackTrace();
         }
         if(success==1)
-      {
-          Toast.makeText(context,"Id created Successfully",Toast.LENGTH_SHORT).show();
+        {
+            Toast.makeText(context,"Posted Succesffuly Successfully",Toast.LENGTH_SHORT).show();
 
-      }
-      else
+        }
+        else
         {
             Toast.makeText(context,"Email Id or Mobile No already exists",Toast.LENGTH_SHORT).show();
 
