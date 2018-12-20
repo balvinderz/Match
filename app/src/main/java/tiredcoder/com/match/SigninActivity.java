@@ -20,7 +20,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 
-public class SigninActivity extends AsyncTask<String,String,String> {
+public class  SigninActivity extends AsyncTask<String,String,String> {
     private Context context;
     private  int flag;
     private TextView bookingid,emailid;
@@ -41,7 +41,7 @@ public class SigninActivity extends AsyncTask<String,String,String> {
     protected String doInBackground(String... arg0)  {
          mobileno=(String) arg0[0];
          pass=arg0[1];
-        String link="http://192.168.1.101/myfiles/login.php";
+        String link="http://192.168.1.104/myfiles/login.php";
         String data= null;
         try {
             data = URLEncoder.encode("mobile_number","UTF-8")+"="+URLEncoder.encode(mobileno,"UTF-8");
@@ -130,7 +130,7 @@ public class SigninActivity extends AsyncTask<String,String,String> {
         if(success==1)
         {
 
-            Intent intent=new Intent(context,Profile.class);
+            Intent intent=new Intent(context,Home.class);
             intent.putExtra("mobileno",mobileno);
             intent.putExtra("pass",pass);
             context.startActivity(intent)

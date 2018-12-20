@@ -33,7 +33,7 @@ import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Profile extends AppCompatActivity {
+public class Home extends AppCompatActivity {
    TextView email,name;
    String mobileno,pass;
    ImageView imageView;
@@ -46,8 +46,8 @@ public class Profile extends AppCompatActivity {
     protected  void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.temporaryprofile);
-        imageView=findViewById(R.id.profileimage);
+        setContentView(R.layout.home);
+        //imageView=findViewById(R.id.profileimage);
         email=findViewById(R.id.email);
         name=findViewById(R.id.name);
         postbutton=findViewById(R.id.PostButton);
@@ -67,7 +67,7 @@ public class Profile extends AppCompatActivity {
         postbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final Dialog dialog=new Dialog(Profile.this);
+                final Dialog dialog=new Dialog(Home.this);
                 dialog.setContentView(R.layout.postlayout);
                 final TextView message=dialog.findViewById(R.id.message);
 
@@ -104,7 +104,7 @@ public class Profile extends AppCompatActivity {
                         post.setMobileno(mobilenoforposting);
                         post.setBooking_id(bookingid);
                         post.setDate(year+"-"+month+"-"+day);
-                       new  CreatePost(Profile.this,post).execute();
+                       new  CreatePost(Home.this,post).execute();
                        dialog.dismiss();
                     }
                 });
@@ -128,7 +128,7 @@ public class Profile extends AppCompatActivity {
         protected Void doInBackground(Void... voids) {
 
             String data;
-            String link="http://192.168.1.101/myfiles/profile.php";
+            String link="http://192.168.1.104/myfiles/profile.php";
             try {
 
                 data = URLEncoder.encode("mobile_number","UTF-8")+"="+URLEncoder.encode(mobileno,"UTF-8");

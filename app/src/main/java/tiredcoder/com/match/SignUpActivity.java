@@ -43,7 +43,7 @@ public class SignUpActivity extends AsyncTask<String,String,String> {
         String password=args[3];
         try
         {
-            String link="http://192.168.1.101/myfiles/login.php";
+            String link="http://192.168.1.104/myfiles/login.php";
             String data;
             data = URLEncoder.encode("name","UTF-8")+"="+URLEncoder.encode(name,"UTF-8");
             data+="&" + URLEncoder.encode("email", "UTF-8") + "=" +
