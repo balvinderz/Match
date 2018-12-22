@@ -85,6 +85,7 @@
         android:id="@+id/Back"
         android:textColor="#000"
         android:text="Back"
+        android:visibility="gone"
         android:layout_alignParentBottom="true"
         android:layout_marginRight="10dp"
         style="@style/Base.Widget.AppCompat.Button.Borderless"/>
@@ -97,7 +98,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-
+        android:visibility="gone"
         android:layout_marginRight="10dp"
         style="@style/Base.Widget.AppCompat.Button.Borderless"/>
 </RelativeLayout>

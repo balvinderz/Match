@@ -2,7 +2,8 @@ package tiredcoder.com.match;
 
 public class PostClass {
     String name,mobileno,message,booking_id;
-    String date;
+    String date,time;
+    int id;
 
     public String getBooking_id() {
         return booking_id;
@@ -49,10 +50,28 @@ public class PostClass {
         this.date = date;
     }
 
-    public PostClass(String name, String mobileno, String message, String date) {
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public PostClass(String name, String mobileno, String message, String date, String time, int id) {
         this.name = name;
         this.mobileno = mobileno;
         this.message = message;
         this.date = date;
+        this.time=time;
+        this.id=id;
     }
 }

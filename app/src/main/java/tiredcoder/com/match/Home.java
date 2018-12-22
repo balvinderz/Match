@@ -40,7 +40,10 @@ public class Home extends AppCompatActivity {
    String bookingid,nameforposting,mobilenoforposting;
    JSONObject jsonObject;
     PostClass post=new PostClass();
-
+    Button bookturf;
+    Button profile;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
     Button postbutton;
     @Override
     protected  void onCreate(Bundle savedInstanceState)
@@ -54,15 +57,29 @@ public class Home extends AppCompatActivity {
     getSupportActionBar().setTitle(Html.fromHtml("<font color='#000'>"+"Home</font>"));
         mobileno=getIntent().getStringExtra("mobileno");
         Log.i("mobileno",mobileno);
-        SharedPreferences sharedPreferences=getPreferences(MODE_PRIVATE);
-        SharedPreferences.Editor editor=sharedPreferences.edit();
+       //  sharedPreferences=getPreferences(MODE_PRIVATE);
+         editor=getSharedPreferences("userinfo", MODE_PRIVATE).edit();
         editor.putString("mobileno",mobileno);
         editor.putString("password",pass);
         editor.apply();
-
+        bookturf=findViewById(R.id.bookturf);
         pass=getIntent().getStringExtra("pass");
         Log.i("mobileno",pass);
-
+        bookturf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(Home.this,BookTurf.class);
+                startActivity(intent);
+            }
+        });
+        profile=findViewById(R.id.profile);
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(Home.this,Profile.class);
+                startActivity(intent);
+            }
+        });
         new  gettingsomething().execute();
         postbutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -169,7 +186,12 @@ public class Home extends AppCompatActivity {
                 name.setText(jsonObject.getString("name"));
                 email.setText(jsonObject.getString("email"));
                 nameforposting=jsonObject.getString("name");
+                editor.putString("name",jsonObject.getString("name"));
+                editor.putString("email",jsonObject.getString("name"));
+
                 bookingid=jsonObject.getString("booking_id");
+                editor.putString("bookingid",bookingid);
+                editor.apply();
                 mobilenoforposting=jsonObject.getString("mobile");
             } catch (JSONException e) {
                 e.printStackTrace();
