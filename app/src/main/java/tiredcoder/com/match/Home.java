@@ -145,7 +145,7 @@ public class Home extends AppCompatActivity {
         protected Void doInBackground(Void... voids) {
 
             String data;
-            String link="http://192.168.1.104/myfiles/profile.php";
+            String link="http://192.168.1.103/myfiles/profile.php";
             try {
 
                 data = URLEncoder.encode("mobile_number","UTF-8")+"="+URLEncoder.encode(mobileno,"UTF-8");
@@ -188,8 +188,9 @@ public class Home extends AppCompatActivity {
                 nameforposting=jsonObject.getString("name");
                 editor.putString("name",jsonObject.getString("name"));
                 editor.putString("email",jsonObject.getString("name"));
-
+                editor.putString("image",jsonObject.getString("image"));
                 bookingid=jsonObject.getString("booking_id");
+                editor.putString("id",String.valueOf(jsonObject.getInt("id")));
                 editor.putString("bookingid",bookingid);
                 editor.apply();
                 mobilenoforposting=jsonObject.getString("mobile");

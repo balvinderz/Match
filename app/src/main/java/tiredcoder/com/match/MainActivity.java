@@ -19,7 +19,7 @@ Button login,signup;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login);
+        setContentView(R.layout.newlogin);
         mobileno=findViewById(R.id.mobileno);
         password=findViewById(R.id.password);
         emailid=findViewById(R.id.emailid);

@@ -22,10 +22,10 @@ public class BookTurf extends AppCompatActivity {
     protected  void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.recyclerforbooking);
+        setContentView(R.layout.commentslayout);
         getSupportActionBar().setTitle(Html.fromHtml("<font color='#000'>"+"Book Turf</font>"));
-        bookbutton=findViewById(R.id.book);
-        bookbutton.setOnClickListener(new View.OnClickListener() {
+     //   bookbutton=findViewById(R.id.book);
+   /*     bookbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
             setContentView(R.layout.selectdate);
@@ -62,9 +62,9 @@ public class BookTurf extends AppCompatActivity {
 
                         mDatePicker.show();
                     }
-                });
+                }); */
 
-            Button button=findViewById(R.id.bookbutton);
+         //   Button button=findViewById(R.id.bookbutton);
          //   button.setOnClickListener(new View.OnClickListener() {
            //     @Override
            //     public void onClick(View v) {
@@ -73,6 +73,6 @@ public class BookTurf extends AppCompatActivity {
           //      }
           //  });
             }
-        });
+      //  });
     }
-}
+//}
