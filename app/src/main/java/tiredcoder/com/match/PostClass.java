@@ -3,6 +3,7 @@ package tiredcoder.com.match;
 public class PostClass {
     String name,mobileno,message,booking_id;
     String date,time;
+    String imagename;
     int id;
 
     public String getBooking_id() {
@@ -66,12 +67,21 @@ public class PostClass {
         this.id = id;
     }
 
-    public PostClass(String name, String mobileno, String message, String date, String time, int id) {
+    public String getImagename() {
+        return imagename;
+    }
+
+    public void setImagename(String imagename) {
+        this.imagename = imagename;
+    }
+
+    public PostClass(String name, String mobileno, String message, String date, String time, int id, String imagename) {
         this.name = name;
         this.mobileno = mobileno;
         this.message = message;
         this.date = date;
         this.time=time;
         this.id=id;
+        this.imagename=imagename;
     }
 }

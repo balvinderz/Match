@@ -60,10 +60,11 @@ public class Home extends AppCompatActivity {
        //  sharedPreferences=getPreferences(MODE_PRIVATE);
          editor=getSharedPreferences("userinfo", MODE_PRIVATE).edit();
         editor.putString("mobileno",mobileno);
-        editor.putString("password",pass);
         editor.apply();
         bookturf=findViewById(R.id.bookturf);
         pass=getIntent().getStringExtra("pass");
+        editor.putString("password",pass);
+
         Log.i("mobileno",pass);
         bookturf.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,12 +116,14 @@ public class Home extends AppCompatActivity {
                         SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd");
                         Date d=new Date(year,month,day);
                         String strDate=dateFormat.format(d);
-
+                        SharedPreferences prefs = getSharedPreferences("userinfo", MODE_PRIVATE);
+                        String image = prefs.getString("image", "soja");
                         post.setMessage(message.getText().toString());
                         post.setName(name);
                         post.setMobileno(mobilenoforposting);
                         post.setBooking_id(bookingid);
                         post.setDate(year+"-"+month+"-"+day);
+                        post.setImagename(image);
                        new  CreatePost(Home.this,post).execute();
                        dialog.dismiss();
                     }
@@ -187,7 +190,7 @@ public class Home extends AppCompatActivity {
                 email.setText(jsonObject.getString("email"));
                 nameforposting=jsonObject.getString("name");
                 editor.putString("name",jsonObject.getString("name"));
-                editor.putString("email",jsonObject.getString("name"));
+                editor.putString("email",jsonObject.getString("email"));
                 editor.putString("image",jsonObject.getString("image"));
                 bookingid=jsonObject.getString("booking_id");
                 editor.putString("id",String.valueOf(jsonObject.getInt("id")));
