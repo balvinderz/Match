@@ -46,7 +46,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.MyViewHo
     {
         CommentClass comment=comments.get(position);
   //     new ImageLoader("192.168.1.103/Turf/img/"+comment.getImage(),holder.imageView).execute();
-        new ImageLoader("http://192.168.1.103/Turf/img/"+comment.getImage(),holder.imageView).execute();
+        new ImageLoader("http://192.168.1.101/Turf/img/"+comment.getImage(),holder.imageView).execute();
         holder.comment.setText(comment.getComment());
         holder.name.setText(comment.getName());
     }

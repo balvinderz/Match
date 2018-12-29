@@ -8,7 +8,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class Profile extends AppCompatActivity {
-    TextView userposts,accountsetting;
+    TextView userbookings,userposts,accountsetting;
     @Override
     protected  void onCreate(Bundle savedInstanceState)
     {
@@ -28,6 +28,15 @@ public class Profile extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent=new Intent(Profile.this,AccountSetting.class);
                 startActivity(intent);
+            }
+        });
+        userbookings=findViewById(R.id.mybookings);
+        userbookings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(Profile.this,ShowBookings.class);
+                startActivity(intent
+                );
             }
         });
     }

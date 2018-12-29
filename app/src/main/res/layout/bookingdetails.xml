@@ -32,6 +32,12 @@
         android:id="@+id/status"
         android:text="Not payed"
         android:layout_below="@+id/slots"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/bookingdate"
+        android:text="Booking date"
+        android:layout_below="@+id/status"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

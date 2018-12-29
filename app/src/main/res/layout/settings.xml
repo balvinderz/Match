@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent">
     <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:id="@+id/changableimage"
         android:layout_gravity="center"
         android:src="@drawable/placeholder"
+        android:maxHeight="80dp"
+        android:maxWidth="80dp"
+
         />
 
     <LinearLayout
@@ -76,3 +82,4 @@
         android:id="@+id/changesettings"
         android:layout_gravity="bottom|center"/>
 </LinearLayout>
+</ScrollView>

@@ -38,7 +38,7 @@ public class CreatePost extends AsyncTask<String,String,String> {
 
         try
         {
-            String link="http://192.168.1.103/myfiles/post.php";
+            String link="http://192.168.1.101/myfiles/post.php";
             String data;
 
             data = URLEncoder.encode("name","UTF-8")+"="+URLEncoder.encode(postClass.getName(),"UTF-8");
@@ -52,6 +52,8 @@ public class CreatePost extends AsyncTask<String,String,String> {
                     URLEncoder.encode(postClass.getDate(), "UTF-8");
             data+="&" + URLEncoder.encode("image", "UTF-8") + "=" +
                     URLEncoder.encode(postClass.getImagename(), "UTF-8");
+            data+="&" + URLEncoder.encode("id", "UTF-8") + "=" +
+                    URLEncoder.encode(String.valueOf(postClass.getId()), "UTF-8");
             URL url=new URL(link);
             URLConnection connection=url.openConnection();
             connection.setDoOutput(true);

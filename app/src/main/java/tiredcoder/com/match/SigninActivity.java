@@ -41,7 +41,7 @@ public class  SigninActivity extends AsyncTask<String,String,String> {
     protected String doInBackground(String... arg0)  {
          mobileno=(String) arg0[0];
          pass=arg0[1];
-        String link="http://192.168.1.103/myfiles/login.php";
+        String link="http://192.168.1.101/myfiles/login.php";
         String data= null;
         try {
             data = URLEncoder.encode("mobile_number","UTF-8")+"="+URLEncoder.encode(mobileno,"UTF-8");

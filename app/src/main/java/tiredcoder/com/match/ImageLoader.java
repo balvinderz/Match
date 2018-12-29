@@ -39,6 +39,8 @@ public class ImageLoader  extends AsyncTask<Void, Void, Bitmap> {
     @Override
     protected void onPostExecute(Bitmap result) {
         super.onPostExecute(result);
+        imageView.setMaxHeight(80);
+        imageView.setMaxWidth(80);
         imageView.setImageBitmap(result);
 
     }

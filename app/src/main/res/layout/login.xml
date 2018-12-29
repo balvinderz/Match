@@ -6,12 +6,12 @@
     android:background="#FFC0CB	"
     android:layout_height="match_parent">
     <de.hdodenhof.circleimageview.CircleImageView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:paddingTop="20dp"
-    android:id="@+id/circle"
-    android:layout_centerHorizontal="true"
-    android:src="@drawable/logo"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="20dp"
+        android:id="@+id/circle"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/logo"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

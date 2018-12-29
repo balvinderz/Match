@@ -221,7 +221,7 @@ public class BookTurf extends AppCompatActivity  {
         }
         protected String doInBackground(String... args) {
             try {
-                String link = "http://192.168.1.103/myfiles/book.php";
+                String link = "http://192.168.1.101/myfiles/book.php";
                 String data;
                 data = URLEncoder.encode("slot", "UTF-8") + "=" + URLEncoder.encode(slot, "UTF-8");
                 data += "&" + URLEncoder.encode("uid", "UTF-8") + "=" +
@@ -261,4 +261,5 @@ public class BookTurf extends AppCompatActivity  {
 
         }
     }
+
 }

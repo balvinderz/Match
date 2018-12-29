@@ -8,6 +8,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -43,8 +44,10 @@ public class Home extends AppCompatActivity {
     Button bookturf;
     Button profile;
     SharedPreferences sharedPreferences;
+    PostAdapter postAdapter;
     SharedPreferences.Editor editor;
     Button postbutton;
+    RecyclerView recyclerView;
     @Override
     protected  void onCreate(Bundle savedInstanceState)
     {
@@ -57,6 +60,7 @@ public class Home extends AppCompatActivity {
     getSupportActionBar().setTitle(Html.fromHtml("<font color='#000'>"+"Home</font>"));
         mobileno=getIntent().getStringExtra("mobileno");
         Log.i("mobileno",mobileno);
+        recyclerView=findViewById(R.id.recyclerforposts);
        //  sharedPreferences=getPreferences(MODE_PRIVATE);
          editor=getSharedPreferences("userinfo", MODE_PRIVATE).edit();
         editor.putString("mobileno",mobileno);
@@ -81,6 +85,8 @@ public class Home extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        new Allposts(this,recyclerView,postAdapter,Home.this).execute();
+
         new  gettingsomething().execute();
         postbutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,7 +94,6 @@ public class Home extends AppCompatActivity {
                 final Dialog dialog=new Dialog(Home.this);
                 dialog.setContentView(R.layout.postlayout);
                 final TextView message=dialog.findViewById(R.id.message);
-
                 dialog.setTitle("Post");
                 final DatePicker datePicker=dialog.findViewById(R.id.date);
                 datePicker.setMinDate((System.currentTimeMillis() - 1000));
@@ -124,6 +129,7 @@ public class Home extends AppCompatActivity {
                         post.setBooking_id(bookingid);
                         post.setDate(year+"-"+month+"-"+day);
                         post.setImagename(image);
+                        post.setId(Integer.parseInt(prefs.getString("id",null)));
                        new  CreatePost(Home.this,post).execute();
                        dialog.dismiss();
                     }
@@ -134,6 +140,7 @@ public class Home extends AppCompatActivity {
             }
         });
     }
+
     private  class gettingsomething extends AsyncTask<Void,Void,Void>
     {
         @Override
@@ -148,7 +155,7 @@ public class Home extends AppCompatActivity {
         protected Void doInBackground(Void... voids) {
 
             String data;
-            String link="http://192.168.1.103/myfiles/profile.php";
+            String link="http://192.168.1.101/myfiles/profile.php";
             try {
 
                 data = URLEncoder.encode("mobile_number","UTF-8")+"="+URLEncoder.encode(mobileno,"UTF-8");
@@ -186,8 +193,8 @@ public class Home extends AppCompatActivity {
         protected void onPostExecute(Void a){
 
             try {
-                name.setText(jsonObject.getString("name"));
-                email.setText(jsonObject.getString("email"));
+//                name.setText(jsonObject.getString("name"));
+  //              email.setText(jsonObject.getString("email"));
                 nameforposting=jsonObject.getString("name");
                 editor.putString("name",jsonObject.getString("name"));
                 editor.putString("email",jsonObject.getString("email"));
