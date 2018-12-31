@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="#000"
+    android:layout_height="wrap_content">
+<RelativeLayout
+  android:layout_width="match_parent"
+
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="fitXY"
+    android:elevation="10dp"
+        android:src="@drawable/pic"
+
+        />
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="ATELETICO ARENA,DOMBIVLI"
+            android:layout_margin="20dp"
+            android:fontFamily="@font/mn"
+
+            android:textColor="#fff"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_margin="20dp"
+            android:fontFamily="@font/mn"
+
+            android:textColor="#fff"
+            android:text="Address: Church Street, Sudama Nagar, Dombivli East, Dombivli, Maharashtra 421203"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_margin="20dp"
+            android:fontFamily="@font/mn"
+
+            android:textColor="#fff"
+            android:text="Ateletico arena is an awesome 7-a side turf situated in dombivli(East).It has all the facilities that a top notch turf requires.It's administration and service are quite good according to the customer feedback."
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_margin="20dp"
+            android:fontFamily="@font/mn"
+
+            android:textColor="#fff"
+            android:text="CURRENT PRICE: RS 1200
+"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="wrap_content"
+
+            android:layout_margin="20dp"
+            android:text="TYPE: 7-A SIDE"
+            android:fontFamily="@font/mn"
+
+            android:textColor="#fff"
+            android:layout_height="wrap_content" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Base.Widget.AppCompat.Button.Borderless"
+            android:background="#ffa500"
+            android:layout_margin="20dp"
+            android:text="Book now"
+            android:id="@+id/book"/>
+    </LinearLayout>
+</RelativeLayout>
+</ScrollView>

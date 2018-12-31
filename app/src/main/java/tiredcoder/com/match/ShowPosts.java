@@ -93,7 +93,7 @@ CircleImageView imageView;
 
         protected String doInBackground(String... args) {
             try {
-                String link = "http://192.168.1.101/myfiles/comments.php";
+                String link = Constants.ip+"myfiles/comments.php";
                 String data;
                 data = URLEncoder.encode("id", "UTF-8") + "=" + URLEncoder.encode(String.valueOf(postid), "UTF-8");
                 URL url = new URL(link);
@@ -186,7 +186,7 @@ CircleImageView imageView;
 
         protected String doInBackground(String... args) {
             try {
-                String link = "http://192.168.1.101/myfiles/postcomment.php";
+                String link = Constants.ip+"myfiles/postcomment.php";
                 String data;
                 SharedPreferences prefs = getSharedPreferences("userinfo", MODE_PRIVATE);
                 String id = prefs.getString("id", "soja");
@@ -254,7 +254,7 @@ CircleImageView imageView;
         protected String doInBackground(String... args) {
 
             try {
-                String link = "http://192.168.1.101/myfiles/userposts.php";
+                String link = Constants.ip+"myfiles/userposts.php";
                 String data;
                 data = URLEncoder.encode("name", "UTF-8") + "=" + URLEncoder.encode(name, "UTF-8");
 
@@ -356,7 +356,7 @@ CircleImageView imageView;
             postedon.setText("Posted on : " + posts[indexofpost].getDate());
             time.setText("Time :" + posts[indexofpost].getTime());
             message.setText(posts[indexofpost].getMessage());
-            new ImageLoader("http://192.168.1.101/Turf/img/"+posts[indexofpost].getImagename(),imageView).execute();
+            new ImageLoader(Constants.ip+"Turf/img/"+posts[indexofpost].getImagename(),imageView).execute();
             next.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -365,7 +365,7 @@ CircleImageView imageView;
                     postedon.setText("Posted on : " + posts[indexofpost].getDate());
                     time.setText("Time :" + posts[indexofpost].getTime());
                     message.setText(posts[indexofpost].getMessage());
-                    new ImageLoader("http://192.168.1.101/Turf/img/"+posts[indexofpost].getImagename(),imageView).execute();
+                    new ImageLoader(Constants.ip+"Turf/img/"+posts[indexofpost].getImagename(),imageView).execute();
 
                     if (indexofpost > 0)
                         back.setVisibility(View.VISIBLE);
@@ -380,7 +380,7 @@ CircleImageView imageView;
                     postedon.setText("Posted on : " + posts[indexofpost].getDate());
                     time.setText("Time :" + posts[indexofpost].getTime());
                     message.setText(posts[indexofpost].getMessage());
-                    new ImageLoader("http://192.168.1.101/Turf/img/"+posts[indexofpost].getImagename(),imageView).execute();
+                    new ImageLoader(Constants.ip+"Turf/img/"+posts[indexofpost].getImagename(),imageView).execute();
 
                     if (indexofpost < postsize)
                         next.setVisibility(View.VISIBLE);
@@ -405,7 +405,7 @@ CircleImageView imageView;
         @Override
         protected String doInBackground(String... args) {
             try {
-                String link = "http://192.168.1.101/myfiles/deletepost.php";
+                String link = Constants.ip+"myfiles/deletepost.php";
                 String data;
                 data = URLEncoder.encode("postid", "UTF-8") + "=" + URLEncoder.encode(String.valueOf(posts[indexofpost].getId()), "UTF-8");
 

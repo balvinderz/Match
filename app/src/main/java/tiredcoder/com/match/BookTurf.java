@@ -1,5 +1,6 @@
 package tiredcoder.com.match;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -7,6 +8,9 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.view.View;
 import android.widget.Button;
@@ -14,21 +18,32 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.gson.JsonArray;
 import com.paytm.pgsdk.Log;
 import com.paytm.pgsdk.PaytmOrder;
 import com.paytm.pgsdk.PaytmPGService;
 import com.paytm.pgsdk.PaytmPaymentTransactionCallback;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Locale;
+import java.util.Set;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -38,15 +53,24 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class BookTurf extends AppCompatActivity  {
     Button bookbutton;
-    int mYear,mMonth,mDay;
+    int mYear=0,mMonth=0,mDay=0;
     EditText yourEditText;
+    RecyclerView timeslotrecycler;
+    ArrayList<timeslot> timeslots;
+    Button paylater;
+    JSONObject jsonObject;
+    TimeSlotAdapter timeslotadapter;
+    public  static ArrayList<String> integerSet=new ArrayList<String>();
+    public  static ArrayList<String> timeset=new ArrayList<String>();
+
     @Override
     protected  void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.recyclerforbooking);
-        getSupportActionBar().setTitle(Html.fromHtml("<font color='#000'>"+"Book Turf</font>"));
+        setContentView(R.layout.booking);
+//        getSupportActionBar().setTitle(Html.fromHtml("<font color='#000'>"+"Book Turf</font>"));
        bookbutton=findViewById(R.id.book);
+       timeslots=new ArrayList<>();
       bookbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,7 +97,9 @@ public class BookTurf extends AppCompatActivity  {
                                 SimpleDateFormat sdf;
                                 sdf = new SimpleDateFormat(myFormat);
                                 yourEditText.setText(sdf.format(myCalendar.getTime()));
-
+                                timeslotrecycler.setVisibility(View.VISIBLE);
+                                String date=yourEditText.getText().toString();
+                                new getTimeSlots(date,BookTurf.this).execute();
                                 mDay = selectedday;
                                 mMonth = selectedmonth;
                                 mYear = selectedyear;
@@ -81,6 +107,30 @@ public class BookTurf extends AppCompatActivity  {
                         }, mYear, mMonth, mDay);
                         //mDatePicker.setTitle("Select date");
                         mDatePicker.getDatePicker().setMinDate((System.currentTimeMillis() - 1000));
+                        timeslotrecycler=findViewById(R.id.recyclerforslot);
+                        paylater=findViewById(R.id.paylater);
+                        paylater.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                for (int i = 0; i < timeset.size(); i++) {
+                                    String slot = timeset.get(i);
+
+                                    SharedPreferences preferences = BookTurf.this.getSharedPreferences("userinfo", Context.MODE_PRIVATE);
+                                    String id = preferences.getString("id", "1");
+                                    String number = preferences.getString("mobileno", null);
+                                    String name = preferences.getString("name", null);
+                                    String amount = "1200";
+                                    String payment_status = "unpaid";
+                                    String turfname = "Atletico Arena";
+                                    String bookingdate = yourEditText.getText().toString();
+                                    new book(slot, bookingdate, name, number, id, turfname, amount, payment_status).execute();
+                                }
+                                timeset.clear();
+                                integerSet.clear();
+                                new getTimeSlots(yourEditText.getText().toString(),BookTurf.this).execute();
+                            }
+                        });
+
 
                         mDatePicker.show();
                     }
@@ -89,8 +139,13 @@ public class BookTurf extends AppCompatActivity  {
             button.setOnClickListener(new View.OnClickListener() {
                @Override
                 public void onClick(View v) {
-              //     Intent intent=new Intent(BookTurf.this,Test.class);
-                  // startActivity(intent);
+                   //     Intent intent=new Intent(BookTurf.this,Test.class);
+                   // startActivity(intent);
+                   if (timeset.size() == 0) {
+                       Toast.makeText(getApplicationContext(), "Select time first", Toast.LENGTH_SHORT).show();
+                   }
+                   else{
+
                    Retrofit retrofit = new Retrofit.Builder()
                            .baseUrl(Api.BASE_URL)
                            .addConverterFactory(GsonConverterFactory.create())
@@ -98,7 +153,7 @@ public class BookTurf extends AppCompatActivity  {
                    final Paytm paytm = new Paytm(
                            Constants.M_ID,
                            Constants.CHANNEL_ID,
-                           "1000.00",
+                           String.valueOf(integerSet.size()*1200)+".00",
                            Constants.WEBSITE,
                            Constants.CALLBACK_URL,
                            Constants.INDUSTRY_TYPE_ID
@@ -122,7 +177,7 @@ public class BookTurf extends AppCompatActivity  {
                            //once we get the checksum we will initiailize the payment.
                            //the method is taking the checksum we got and the paytm object as the parameter
                            PaytmPGService Service = PaytmPGService.getStagingService();
-                           HashMap<String,String> parammap=new HashMap<>();
+                           HashMap<String, String> parammap = new HashMap<>();
                            HashMap<String, String> paramMap = new HashMap<>();
                            paramMap.put("MID", Constants.M_ID);
                            paramMap.put("ORDER_ID", paytm.getOrderId());
@@ -140,22 +195,27 @@ public class BookTurf extends AppCompatActivity  {
                            Service.startPaymentTransaction(BookTurf.this, true, true, new PaytmPaymentTransactionCallback() {
                                @Override
                                public void onTransactionResponse(Bundle inResponse) {
-                                   String string=inResponse.toString();
-                                   int index=string.indexOf("RESPMSG=");
-                                   String reseponse=string.substring(index,string.length()-2);
-                                   Log.i("Response",reseponse);
-                                   if(reseponse.equals("RESPMSG=Txn Success"))
-                                   {
-                                       String slot="9-10 AM";
-                                       SharedPreferences preferences=BookTurf.this.getSharedPreferences("userinfo",Context.MODE_PRIVATE);
-                                       String id=preferences.getString("id","1");
-                                       String number=preferences.getString("mobileno",null);
-                                       String name=preferences.getString("name",null);
-                                       String amount="1000";
-                                       String payment_status="paid";
-                                       String turfname="Atletico Arena";
-                                       String bookingdate=yourEditText.getText().toString();
-                            new book(slot,bookingdate,name,number,id,turfname,amount,payment_status).execute();
+                                   String string = inResponse.toString();
+                                   int index = string.indexOf("RESPMSG=");
+                                   String reseponse = string.substring(index, string.length() - 2);
+                                   Log.i("Response", reseponse);
+                                   if (reseponse.equals("RESPMSG=Txn Success")) {
+                                       for (int i = 0; i < timeset.size(); i++) {
+                                           String slot = timeset.get(i);
+
+                                           SharedPreferences preferences = BookTurf.this.getSharedPreferences("userinfo", Context.MODE_PRIVATE);
+                                           String id = preferences.getString("id", "1");
+                                           String number = preferences.getString("mobileno", null);
+                                           String name = preferences.getString("name", null);
+                                           String amount = "1200";
+                                           String payment_status = "paid";
+                                           String turfname = "Atletico Arena";
+                                           String bookingdate = yourEditText.getText().toString();
+                                           new book(slot, bookingdate, name, number, id, turfname, amount, payment_status).execute();
+                                       }
+                                       timeset.clear();
+                                       integerSet.clear();
+                                       new getTimeSlots(yourEditText.getText().toString(),BookTurf.this).execute();
                                    }
 
                                }
@@ -197,10 +257,84 @@ public class BookTurf extends AppCompatActivity  {
 
                        }
                    });
+               }
                            }
            });
             }
        });
+    }
+    @SuppressLint("StaticFieldLeak")
+    public class getTimeSlots extends AsyncTask<String,String,String>
+    {
+        String date;
+        Context context;
+
+        public getTimeSlots(String date, Context context) {
+            this.date = date;
+            this.context = context;
+        }
+        protected  String doInBackground(String ... args)
+        {
+
+            try
+            {
+                String link=Constants.ip+"myfiles/timeslots.php";
+                String data;
+                data = URLEncoder.encode("date","UTF-8")+"="+URLEncoder.encode(date,"UTF-8");
+
+                URL url=new URL(link);
+                URLConnection connection=url.openConnection();
+                connection.setDoOutput(true);
+                OutputStreamWriter writer=new OutputStreamWriter(connection.getOutputStream());
+                writer.write(data);
+                writer.flush();
+                BufferedReader br=new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder sb=new StringBuilder();
+                String line=null;
+                while ((line=br.readLine())!=null)
+                {
+                    sb.append(line);
+                    break;
+                }
+                jsonObject=new JSONObject(sb.toString());
+                android.util.Log.i("Loggingjson",jsonObject.toString());
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            return "";
+        }
+        @Override
+        protected void onPostExecute(String result){
+           // dialog.dismiss();
+            int success= 0;
+            timeslots.clear();
+            try {
+                JSONArray jsonArray=jsonObject.getJSONArray("time_slots");
+                for(int i=0;i< jsonArray.length();i++)
+                {
+                    int select=0;
+                    String time=jsonArray.getJSONObject(i).getString("time_slot");
+                    timeslot timeslot=new timeslot(select,time);
+                    timeslots.add(timeslot);
+                }
+                timeslotadapter=new TimeSlotAdapter(timeslots,context);
+                RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(context);
+                timeslotrecycler.setLayoutManager(mLayoutManager);
+                timeslotrecycler.setItemAnimator(new DefaultItemAnimator());
+                timeslotrecycler.setAdapter(timeslotadapter);
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
     public class book extends AsyncTask<String,String,String>
     {
@@ -221,7 +355,7 @@ public class BookTurf extends AppCompatActivity  {
         }
         protected String doInBackground(String... args) {
             try {
-                String link = "http://192.168.1.101/myfiles/book.php";
+                String link = Constants.ip+"myfiles/book.php";
                 String data;
                 data = URLEncoder.encode("slot", "UTF-8") + "=" + URLEncoder.encode(slot, "UTF-8");
                 data += "&" + URLEncoder.encode("uid", "UTF-8") + "=" +
@@ -260,6 +394,17 @@ public class BookTurf extends AppCompatActivity  {
             return "";
 
         }
+        @Override
+        protected void onPostExecute(String result)
+        {
+            Toast.makeText(BookTurf.this,"Booked successfully",Toast.LENGTH_SHORT).show();
+        }
+    }
+    @Override
+    public void onBackPressed() {
+        integerSet.clear();
+        timeset.clear();
+        super.onBackPressed();
     }
 
 }

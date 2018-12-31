@@ -1,6 +1,8 @@
 package tiredcoder.com.match;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -8,6 +10,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.util.Log;
@@ -19,6 +23,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -32,6 +37,8 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 
 public class Home extends AppCompatActivity {
@@ -48,6 +55,21 @@ public class Home extends AppCompatActivity {
     SharedPreferences.Editor editor;
     Button postbutton;
     RecyclerView recyclerView;
+    @Override
+    public void onResume(){
+        super.onResume();
+        // put your code here...
+        SharedPreferences sharedPreferences = getSharedPreferences("userinfo", MODE_PRIVATE);
+
+        editor=getSharedPreferences("userinfo", MODE_PRIVATE).edit();
+
+        editor.putString("name",sharedPreferences.getString("name",null));
+        editor.putString("email",sharedPreferences.getString("email",null));
+        editor.putString("password",sharedPreferences.getString("password",null));
+        editor.apply();
+
+
+    }
     @Override
     protected  void onCreate(Bundle savedInstanceState)
     {
@@ -108,8 +130,10 @@ public class Home extends AppCompatActivity {
                 okbutton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        SharedPreferences prefs = getSharedPreferences("userinfo", MODE_PRIVATE);
+
                         String messageforpost=message.getText().toString();
-                        String name=nameforposting;
+                        String name=prefs.getString("name",null);
                         int day=datePicker.getDayOfMonth();
                         int month=datePicker.getMonth()+1;
                         int year=datePicker.getYear();
@@ -121,7 +145,6 @@ public class Home extends AppCompatActivity {
                         SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd");
                         Date d=new Date(year,month,day);
                         String strDate=dateFormat.format(d);
-                        SharedPreferences prefs = getSharedPreferences("userinfo", MODE_PRIVATE);
                         String image = prefs.getString("image", "soja");
                         post.setMessage(message.getText().toString());
                         post.setName(name);
@@ -155,7 +178,7 @@ public class Home extends AppCompatActivity {
         protected Void doInBackground(Void... voids) {
 
             String data;
-            String link="http://192.168.1.101/myfiles/profile.php";
+            String link=Constants.ip+"myfiles/profile.php";
             try {
 
                 data = URLEncoder.encode("mobile_number","UTF-8")+"="+URLEncoder.encode(mobileno,"UTF-8");

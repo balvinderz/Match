@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<android.support.v4.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
-<LinearLayout
+<RelativeLayout
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="wrap_content">
@@ -13,12 +13,35 @@
       android:hint="Enter Date"
       android:inputType="date"
       android:id="@+id/edittext"/>
+<android.support.v7.widget.RecyclerView
+    android:layout_width="match_parent"
+    android:id="@+id/recyclerforslot"
+    android:visibility="gone"
+    android:layout_below="@id/edittext"
+    android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
   <Button
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:id="@+id/bookbutton"
       android:text="book"
-      />
-</LinearLayout>
+      android:textColor="#fff"
+      android:layout_below="@id/recyclerforslot"
+      android:background="#000"
+      android:layout_marginTop="20dp"
 
-</ScrollView>
+      style="@style/Base.Widget.AppCompat.Button.Borderless"
+      />
+  <Button
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:id="@+id/paylater"
+      android:text="paylater"
+      android:layout_below="@id/bookbutton"
+      android:layout_marginTop="20dp"
+      android:textColor="#fff"
+      android:background="#000"
+      style="@style/Base.Widget.AppCompat.Button.Borderless"
+      />
+</RelativeLayout>
+
+</android.support.v4.widget.NestedScrollView>

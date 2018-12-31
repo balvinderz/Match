@@ -4,11 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class Profile extends AppCompatActivity {
-    TextView userbookings,userposts,accountsetting;
+    RelativeLayout userbookings,userposts,accountsetting;
     @Override
     protected  void onCreate(Bundle savedInstanceState)
     {

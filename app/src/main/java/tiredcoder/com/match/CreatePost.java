@@ -38,7 +38,7 @@ public class CreatePost extends AsyncTask<String,String,String> {
 
         try
         {
-            String link="http://192.168.1.101/myfiles/post.php";
+            String link=Constants.ip+"myfiles/post.php";
             String data;
 
             data = URLEncoder.encode("name","UTF-8")+"="+URLEncoder.encode(postClass.getName(),"UTF-8");

@@ -72,7 +72,7 @@ public class ShowBookings extends AppCompatActivity {
         protected String doInBackground(String... args) {
 
             try {
-                String link = "http://192.168.1.101/myfiles/userbookings.php";
+                String link = Constants.ip+"myfiles/userbookings.php";
                 String data;
                 data = URLEncoder.encode("number", "UTF-8") + "=" + URLEncoder.encode(number, "UTF-8");
 

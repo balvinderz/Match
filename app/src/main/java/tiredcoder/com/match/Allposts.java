@@ -1,13 +1,12 @@
 package tiredcoder.com.match;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.View;
-
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,13 +19,15 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+@SuppressLint("StaticFieldLeak")
 public class Allposts extends AsyncTask<String,String,String> {
     JSONObject jsonObject;
     Context context;
     RecyclerView recyclerView;
     PostAdapter postAdapter;
     Home home;
-    public Allposts(Context context, RecyclerView recyclerView, PostAdapter postAdapter,Home home) {
+
+    Allposts(Context context, RecyclerView recyclerView, PostAdapter postAdapter, Home home) {
         this.context = context;
         this.recyclerView = recyclerView;
         this.postAdapter = postAdapter;
@@ -43,7 +44,7 @@ public class Allposts extends AsyncTask<String,String,String> {
     protected String doInBackground(String... strings) {
 
         try {
-            String link = "http://192.168.1.101/myfiles/allposts.php";
+            String link = Constants.ip+"myfiles/allposts.php";
 
 
             URL url = new URL(link);
@@ -69,8 +70,8 @@ public class Allposts extends AsyncTask<String,String,String> {
     {
         try {
             JSONArray jsonArray = jsonObject.getJSONArray("posts");
-          int  postsize = jsonArray.length();
-           PostClass[] posts = new PostClass[postsize];
+            int  postsize = jsonArray.length();
+            PostClass[] posts = new PostClass[postsize];
 
             for (int i = 0; i < postsize; i++) {
                 JSONObject object = jsonArray.getJSONObject(i);
@@ -90,7 +91,7 @@ public class Allposts extends AsyncTask<String,String,String> {
             }
             ArrayList<PostClass> arrayList=new ArrayList<>(Arrays.asList(posts));
             postAdapter=new PostAdapter(arrayList,context,home);
-            RecyclerView.LayoutManager mLayoutManager = new CustomGridLayoutManager(context);
+            RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(context);
             recyclerView.setLayoutManager(mLayoutManager);
             recyclerView.setItemAnimator(new DefaultItemAnimator());
 
@@ -98,23 +99,6 @@ public class Allposts extends AsyncTask<String,String,String> {
             Log.i("sizeofarray", String.valueOf(jsonArray.length()));
         } catch (JSONException e) {
             e.printStackTrace();
-        }
-    }
-    public class CustomGridLayoutManager extends LinearLayoutManager {
-        private boolean isScrollEnabled = true;
-
-        public CustomGridLayoutManager(Context context) {
-            super(context);
-        }
-
-        public void setScrollEnabled(boolean flag) {
-            this.isScrollEnabled = flag;
-        }
-
-        @Override
-        public boolean canScrollVertically() {
-            //Similarly you can customize "canScrollHorizontally()" for managing horizontal scroll
-            return isScrollEnabled && super.canScrollVertically();
         }
     }
 }

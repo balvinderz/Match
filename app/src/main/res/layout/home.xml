@@ -11,13 +11,7 @@
         android:id="@+id/justid"
         android:elevation="20dp"
         android:layout_alignParentBottom="true">
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="10dp"
-            android:text="Home"
-            style="@style/Base.Widget.AppCompat.Button.Borderless"/>
+
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"

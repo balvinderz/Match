@@ -20,11 +20,11 @@ Button login,signup;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.newlogin);
+        setContentView(R.layout.anotherlogin);
         mobileno=findViewById(R.id.mobileno);
         password=findViewById(R.id.password);
-        emailid=findViewById(R.id.emailid);
-        bookingid=findViewById(R.id.bookingid);
+  //      emailid=findViewById(R.id.emailid);
+//        bookingid=findViewById(R.id.bookingid);
         login=findViewById(R.id.login);
         if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.READ_SMS) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.READ_SMS, Manifest.permission.RECEIVE_SMS}, 101);
