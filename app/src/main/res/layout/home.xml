@@ -18,6 +18,7 @@
             android:padding="10dp"
             android:layout_weight="1"
             android:id="@+id/bookturf"
+            android:drawableTop="@drawable/bookblack"
             android:text="Book TURF"
             style="@style/Base.Widget.AppCompat.Button.Borderless"/>
         <Button
@@ -26,6 +27,8 @@
             android:layout_weight="1"
             android:id="@+id/profile"
             android:padding="10dp"
+            android:drawableTop="@drawable/accsettings"
+
             android:text="My profile"
             style="@style/Base.Widget.AppCompat.Button.Borderless"/>
     </LinearLayout>

@@ -129,12 +129,30 @@ public class  SigninActivity extends AsyncTask<String,String,String> {
         }
         if(success==1)
         {
+            try {
+                int admin=jsonObject.getInt("admin");
+                //    Intent
+                Intent intent;
+                if(admin==1) {
+                    intent = new Intent(context, Admin.class);
+                    context.startActivity(intent);
+                }
+                else {
+                    intent = new Intent(context, Home.class);
 
-            Intent intent=new Intent(context,Home.class);
-            intent.putExtra("mobileno",mobileno);
-            intent.putExtra("pass",pass);
-            context.startActivity(intent)
-            ;
+       //             intent = new Intent(context, Admin.class);
+                    intent.putExtra("mobileno", mobileno);
+                    intent.putExtra("pass", pass);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+                    context.startActivity(intent)
+                    ;
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
         }
         else
             Toast.makeText(context,"Wrong mobile or Id",Toast.LENGTH_SHORT).show();

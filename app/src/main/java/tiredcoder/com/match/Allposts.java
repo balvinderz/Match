@@ -3,10 +3,12 @@ package tiredcoder.com.match;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -94,8 +96,13 @@ public class Allposts extends AsyncTask<String,String,String> {
             RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(context);
             recyclerView.setLayoutManager(mLayoutManager);
             recyclerView.setItemAnimator(new DefaultItemAnimator());
-
+            recyclerView.setHasFixedSize(true);
+            recyclerView.setItemViewCacheSize(20);
+            recyclerView.setDrawingCacheEnabled(true);
+            recyclerView.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
+            ViewCompat.setNestedScrollingEnabled(recyclerView, false);
             recyclerView.setAdapter(postAdapter);
+
             Log.i("sizeofarray", String.valueOf(jsonArray.length()));
         } catch (JSONException e) {
             e.printStackTrace();

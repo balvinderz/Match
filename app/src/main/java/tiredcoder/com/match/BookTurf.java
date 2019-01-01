@@ -59,6 +59,7 @@ public class BookTurf extends AppCompatActivity  {
     ArrayList<timeslot> timeslots;
     Button paylater;
     JSONObject jsonObject;
+    Button secondbutton;
     TimeSlotAdapter timeslotadapter;
     public  static ArrayList<String> integerSet=new ArrayList<String>();
     public  static ArrayList<String> timeset=new ArrayList<String>();
@@ -75,6 +76,7 @@ public class BookTurf extends AppCompatActivity  {
             @Override
             public void onClick(View v) {
             setContentView(R.layout.selectdate);
+            secondbutton=findViewById(R.id.bookbutton);
                 yourEditText = (EditText) findViewById(R.id.edittext);
                 yourEditText.setOnClickListener(new View.OnClickListener() {
 
@@ -329,7 +331,8 @@ public class BookTurf extends AppCompatActivity  {
                 timeslotrecycler.setLayoutManager(mLayoutManager);
                 timeslotrecycler.setItemAnimator(new DefaultItemAnimator());
                 timeslotrecycler.setAdapter(timeslotadapter);
-
+                secondbutton.setVisibility(View.VISIBLE);
+                paylater.setVisibility(View.VISIBLE);
 
             } catch (Exception e) {
                 e.printStackTrace();

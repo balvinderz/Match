@@ -26,15 +26,19 @@
         </provider>
 
         <activity android:name=".MainActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SignUp"></activity>
+        <activity android:name=".SignUp"
+            android:label="SignUp"></activity>
         <activity android:name=".Home"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
+
             android:label="Profile"
             ></activity>
         <activity android:name=".BookTurf"
@@ -45,9 +49,13 @@
         <activity android:name=".Profile"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
             ></activity>
-        <activity android:name=".ShowPosts"></activity>
-        <activity android:name=".AccountSetting"></activity>
-    <activity android:name=".ShowBookings"></activity>
+        <activity android:name=".ShowPosts"
+            android:label="Posts"></activity>
+        <activity android:name=".AccountSetting"
+            android:label="Account Settings"></activity>
+    <activity android:name=".ShowBookings"
+        android:label="Show Bookings" ></activity>
+        <activity android:name=".Admin"/>
     </application>
     
 

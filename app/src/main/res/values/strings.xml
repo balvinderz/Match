@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Match</string>
+    <string name="placeholder_amount">Placeholder Amount</string>
+    <string name="placeholder_time">Placeholder Time</string>
+    <string name="placeholder_date">Placeholder Date</string>
+    <string name="placeholder_status">Placeholder Status</string>
+    <string name="placeholder_name">Placeholder Name</string>
 </resources>

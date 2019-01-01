@@ -17,6 +17,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.squareup.picasso.Picasso;
+
 import org.json.JSONException;
 
 import java.io.BufferedReader;
@@ -67,8 +69,9 @@ public class AccountSetting extends AppCompatActivity {
         fileName=preferences.getString("image",null);
         email.setText(preferences.getString("email",null));
         password.setText(preferences.getString("password",null));
-        new ImageLoader(Constants.ip+"Turf/img/"+preferences.getString("image",null),imageView).execute();
-        button=findViewById(R.id.changesettings);
+        Picasso.get().load(Constants.ip+"Turf/img/"+preferences.getString("image",null)).into(imageView);
+      //  new ImageLoader(Constants.ip+"Turf/img/"+preferences.getString("image",null),imageView).execute();
+        button= findViewById(R.id.changesettings);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

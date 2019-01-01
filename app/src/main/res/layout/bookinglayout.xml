@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="#fff"
+    android:layout_height="wrap_content">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/turf"
+        android:textSize="18sp"
+        android:fontFamily="sans-serif-condensed"
+        android:text="Placeholder turf name"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/status"
+        android:layout_marginTop="10dp"
+        android:textSize="18sp"
+        android:fontFamily="sans-serif-condensed"
+        android:text="@string/placeholder_status"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Date"
+        android:layout_marginTop="10dp"
+        android:textSize="18sp"
+        android:fontFamily="sans-serif-condensed"
+        android:text="@string/placeholder_date"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Time"
+        android:layout_marginTop="10dp"
+        android:textSize="18sp"
+        android:fontFamily="sans-serif-condensed"
+        android:text="@string/placeholder_time"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/amountforbooking"
+        android:layout_marginTop="10dp"
+        android:textSize="18sp"
+        android:fontFamily="sans-serif-condensed"
+        android:text="@string/placeholder_amount"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/nameinbooking"
+        android:layout_marginTop="10dp"
+        android:textSize="18sp"
+        android:fontFamily="sans-serif-condensed"
+        android:text="Placeholder name"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/numberinbooking"
+        android:layout_marginTop="10dp"
+        android:textSize="18sp"
+        android:fontFamily="sans-serif-condensed"
+        android:text="Placeholder number"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginTop="5dp"
+        android:background="#707070"/>
+</LinearLayout>

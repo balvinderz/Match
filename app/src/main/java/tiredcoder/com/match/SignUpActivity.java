@@ -1,5 +1,6 @@
 package tiredcoder.com.match;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
@@ -18,6 +19,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
+@SuppressLint("StaticFieldLeak")
 
 public class SignUpActivity extends AsyncTask<String,String,String> {
     Context context;

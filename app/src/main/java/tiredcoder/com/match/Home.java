@@ -79,7 +79,7 @@ public class Home extends AppCompatActivity {
         email=findViewById(R.id.email);
         name=findViewById(R.id.name);
         postbutton=findViewById(R.id.PostButton);
-    getSupportActionBar().setTitle(Html.fromHtml("<font color='#000'>"+"Home</font>"));
+//    getSupportActionBar().setTitle(Html.fromHtml("<font color='#000'>"+"Home</font>"));
         mobileno=getIntent().getStringExtra("mobileno");
         Log.i("mobileno",mobileno);
         recyclerView=findViewById(R.id.recyclerforposts);
@@ -130,6 +130,7 @@ public class Home extends AppCompatActivity {
                 okbutton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+
                         SharedPreferences prefs = getSharedPreferences("userinfo", MODE_PRIVATE);
 
                         String messageforpost=message.getText().toString();
@@ -153,7 +154,8 @@ public class Home extends AppCompatActivity {
                         post.setDate(year+"-"+month+"-"+day);
                         post.setImagename(image);
                         post.setId(Integer.parseInt(prefs.getString("id",null)));
-                       new  CreatePost(Home.this,post).execute();
+
+                       new  CreatePost(Home.this,post,recyclerView,postAdapter,Home.this).execute();
                        dialog.dismiss();
                     }
                 });

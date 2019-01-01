@@ -21,6 +21,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.picasso.Picasso;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -39,6 +41,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.MyViewHolder> 
     private Context context;
     Dialog dialog;
     ArrayList<CommentClass> comments;
+    RecyclerView.RecycledViewPool mSharedPool = new RecyclerView.RecycledViewPool();
+
     RecyclerView commentsrecylerview;
     CommentAdapter mAdapter;
     private  Home home;
@@ -71,6 +75,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.MyViewHolder> 
     public PostAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.otherposts, parent, false);
+        RecyclerView recyclerView=parent.findViewById(R.id.recyclerforposts);
+        recyclerView.setRecycledViewPool(mSharedPool);
 
         return new PostAdapter.MyViewHolder(itemView);
     }
@@ -79,9 +85,12 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.MyViewHolder> 
     {
         final PostClass post=posts.get(position);
         //     new ImageLoader("192.168.1.103/Turf/img/"+comment.getImage(),holder.imageView).execute();
-        new ImageLoader(Constants.ip+"Turf/img/"+post.getImagename(),holder.imageView).execute();
+      //  new ImageLoader(Constants.ip+"Turf/img/"+post.getImagename(),holder.imageView).execute();
         holder.date.setText(post.getDate());
         holder.name.setText(post.getName());
+        Picasso.get().load(Constants.ip+"Turf/img/"+post.getImagename())
+                .placeholder(R.drawable.placeholder)
+                .into(holder.imageView);
         holder.postmessage.setText(post.getMessage());
        holder.mobileno.setOnClickListener(new View.OnClickListener() {
            @Override

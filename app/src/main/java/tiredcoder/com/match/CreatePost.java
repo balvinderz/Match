@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -23,12 +24,19 @@ import java.net.URLEncoder;
 public class CreatePost extends AsyncTask<String,String,String> {
     Context context;
     PostClass postClass;
+    RecyclerView recyclerView;
+    PostAdapter postAdapter;
+    Home home;
     JSONObject jsonObject;
-    CreatePost(Context context,PostClass postClass)
-    {
-        this.context=context;
-        this.postClass=postClass;
+
+    public CreatePost(Context context, PostClass postClass, RecyclerView recyclerView, PostAdapter postAdapter, Home home) {
+        this.context = context;
+        this.postClass = postClass;
+        this.recyclerView = recyclerView;
+        this.postAdapter = postAdapter;
+        this.home = home;
     }
+
     protected  void onPreExecute()
     {
 
@@ -100,6 +108,9 @@ public class CreatePost extends AsyncTask<String,String,String> {
         {
             Toast.makeText(context,"Email Id or Mobile No already exists",Toast.LENGTH_SHORT).show();
 
+
         }
+        new Allposts(context,recyclerView,postAdapter,home).execute();
+
     }
 }

@@ -1,12 +1,15 @@
 package tiredcoder.com.match;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,20 +37,22 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.MyViewHo
             this.comments=comments;
             this.context=context;
     }
+    @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.commentslayout, parent, false);
 
         return new MyViewHolder(itemView);
     }
     @Override
-    public void onBindViewHolder(MyViewHolder holder,int position)
+    public void onBindViewHolder(@NonNull MyViewHolder holder, int position)
     {
         CommentClass comment=comments.get(position);
   //     new ImageLoader("192.168.1.103/Turf/img/"+comment.getImage(),holder.imageView).execute();
-        new ImageLoader(Constants.ip+"Turf/img/"+comment.getImage(),holder.imageView).execute();
-        holder.comment.setText(comment.getComment());
+        Picasso.get().load(Constants.ip+"Turf/img/"+comment.getImage())
+                .placeholder(R.drawable.placeholder)
+                .into(holder.imageView);        holder.comment.setText(comment.getComment());
         holder.name.setText(comment.getName());
     }
     @Override

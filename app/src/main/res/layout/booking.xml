@@ -2,7 +2,7 @@
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:background="#000"
+    android:background="#fff"
     android:layout_height="wrap_content">
 <RelativeLayout
   android:layout_width="match_parent"
@@ -27,14 +27,14 @@
             android:layout_margin="20dp"
             android:fontFamily="@font/mn"
 
-            android:textColor="#fff"
+            android:textColor="#000"
             android:layout_height="wrap_content" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_margin="20dp"
             android:fontFamily="@font/mn"
 
-            android:textColor="#fff"
+            android:textColor="#000"
             android:text="Address: Church Street, Sudama Nagar, Dombivli East, Dombivli, Maharashtra 421203"
             android:layout_height="wrap_content" />
         <TextView
@@ -42,7 +42,7 @@
             android:layout_margin="20dp"
             android:fontFamily="@font/mn"
 
-            android:textColor="#fff"
+            android:textColor="#000"
             android:text="Ateletico arena is an awesome 7-a side turf situated in dombivli(East).It has all the facilities that a top notch turf requires.It's administration and service are quite good according to the customer feedback."
             android:layout_height="wrap_content" />
         <TextView
@@ -50,7 +50,7 @@
             android:layout_margin="20dp"
             android:fontFamily="@font/mn"
 
-            android:textColor="#fff"
+            android:textColor="#000"
             android:text="CURRENT PRICE: RS 1200
 "
             android:layout_height="wrap_content" />
@@ -61,7 +61,7 @@
             android:text="TYPE: 7-A SIDE"
             android:fontFamily="@font/mn"
 
-            android:textColor="#fff"
+            android:textColor="#000"
             android:layout_height="wrap_content" />
         <Button
             android:layout_width="wrap_content"
