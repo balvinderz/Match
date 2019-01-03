@@ -1,6 +1,7 @@
 package tiredcoder.com.match;
 
 import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -19,6 +20,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,6 +41,7 @@ import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 
 public class Home extends AppCompatActivity {
@@ -50,6 +53,8 @@ public class Home extends AppCompatActivity {
     PostClass post=new PostClass();
     Button bookturf;
     Button profile;
+    EditText yourEditText;
+    int mYear,mMonth,mDay;
     SharedPreferences sharedPreferences;
     PostAdapter postAdapter;
     SharedPreferences.Editor editor;
@@ -67,6 +72,7 @@ public class Home extends AppCompatActivity {
         editor.putString("email",sharedPreferences.getString("email",null));
         editor.putString("password",sharedPreferences.getString("password",null));
         editor.apply();
+        new Allposts(this,recyclerView,postAdapter,Home.this).execute();
 
 
     }
@@ -81,17 +87,18 @@ public class Home extends AppCompatActivity {
         postbutton=findViewById(R.id.PostButton);
 //    getSupportActionBar().setTitle(Html.fromHtml("<font color='#000'>"+"Home</font>"));
         mobileno=getIntent().getStringExtra("mobileno");
-        Log.i("mobileno",mobileno);
+     //   Log.i("mobileno",mobileno);
         recyclerView=findViewById(R.id.recyclerforposts);
        //  sharedPreferences=getPreferences(MODE_PRIVATE);
          editor=getSharedPreferences("userinfo", MODE_PRIVATE).edit();
+        pass=getIntent().getStringExtra("pass");
+        editor.putString("password",pass);
         editor.putString("mobileno",mobileno);
         editor.apply();
         bookturf=findViewById(R.id.bookturf);
-        pass=getIntent().getStringExtra("pass");
-        editor.putString("password",pass);
 
-        Log.i("mobileno",pass);
+
+//        Log.i("mobileno",pass);
         bookturf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -107,9 +114,11 @@ public class Home extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        new Allposts(this,recyclerView,postAdapter,Home.this).execute();
+        if(Constants.checknet(Home.this))
 
-        new  gettingsomething().execute();
+            new Allposts(this,recyclerView,postAdapter,Home.this).execute();
+        if(Constants.checknet(Home.this))
+            new  gettingsomething().execute();
         postbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -117,8 +126,42 @@ public class Home extends AppCompatActivity {
                 dialog.setContentView(R.layout.postlayout);
                 final TextView message=dialog.findViewById(R.id.message);
                 dialog.setTitle("Post");
-                final DatePicker datePicker=dialog.findViewById(R.id.date);
-                datePicker.setMinDate((System.currentTimeMillis() - 1000));
+                 yourEditText = (EditText) dialog.findViewById(R.id.datepick);
+                yourEditText.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        // TODO Auto-generated method stub
+                        // To show current date in the datepicker
+                        Calendar mcurrentDate = Calendar.getInstance();
+                        mYear = mcurrentDate.get(Calendar.YEAR);
+                            mMonth = mcurrentDate.get(Calendar.MONTH);
+                             mDay = mcurrentDate.get(Calendar.DAY_OF_MONTH);
+                        final DatePickerDialog mDatePicker = new DatePickerDialog(Home.this, new DatePickerDialog.OnDateSetListener() {
+                            public void onDateSet(DatePicker datepicker, int selectedyear, int selectedmonth, int selectedday) {
+                                Calendar myCalendar = Calendar.getInstance();
+                                myCalendar.set(Calendar.YEAR, selectedyear);
+                                myCalendar.set(Calendar.MONTH, selectedmonth);
+                                myCalendar.set(Calendar.DAY_OF_MONTH, selectedday);
+
+                                String myFormat = "dd/MM/yy"; //Change as you need
+                                SimpleDateFormat sdf;
+                                sdf = new SimpleDateFormat(myFormat);
+                                yourEditText.setText(sdf.format(myCalendar.getTime()));
+
+                                mDay = selectedday;
+                                mMonth = selectedmonth;
+                                mYear = selectedyear;
+                            }
+                        }, mYear, mMonth, mDay);
+                        //mDatePicker.setTitle("Select date");
+                        mDatePicker.getDatePicker().setMinDate((System.currentTimeMillis() - 1000));
+
+
+
+                        mDatePicker.show();
+                    }
+                });
                 Button cancelbutton=dialog.findViewById(R.id.cancelbutton);
                 cancelbutton.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -133,30 +176,35 @@ public class Home extends AppCompatActivity {
 
                         SharedPreferences prefs = getSharedPreferences("userinfo", MODE_PRIVATE);
 
-                        String messageforpost=message.getText().toString();
-                        String name=prefs.getString("name",null);
-                        int day=datePicker.getDayOfMonth();
-                        int month=datePicker.getMonth()+1;
-                        int year=datePicker.getYear();
-                        Log.i("dateday",String.valueOf(day));
+                        if (message.getText().toString().equals("")) {
+                            message.setError("Write something first");
+                            message.requestFocus();
+                        }
+                        else
+                            if (yourEditText.getText().toString().equals(""))
+                            {
+                                yourEditText.setError("Select Date first");
+                            Toast.makeText(Home.this,"Select Date first",Toast.LENGTH_SHORT).show();
+                            }
+                                else {
+                            String messageforpost = message.getText().toString();
 
-                        Log.i("datemonth",String.valueOf(month));
-                        Log.i("dateyear",String.valueOf(year));
+                            String name = prefs.getString("name", null);
 
-                        SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd");
-                        Date d=new Date(year,month,day);
-                        String strDate=dateFormat.format(d);
-                        String image = prefs.getString("image", "soja");
-                        post.setMessage(message.getText().toString());
-                        post.setName(name);
-                        post.setMobileno(mobilenoforposting);
-                        post.setBooking_id(bookingid);
-                        post.setDate(year+"-"+month+"-"+day);
-                        post.setImagename(image);
-                        post.setId(Integer.parseInt(prefs.getString("id",null)));
+                           // String strDate = dateFormat.format(d);
+                            String image = prefs.getString("image", "soja");
+                            post.setMessage(message.getText().toString());
+                            post.setName(name);
+                            post.setMobileno(mobilenoforposting);
+                            post.setBooking_id(bookingid);
+                            post.setDate(yourEditText.getText().toString());
+                            post.setImagename(image);
+                            post.setId(Integer.parseInt(prefs.getString("id", null)));
+                                if(Constants.checknet(Home.this))
 
-                       new  CreatePost(Home.this,post,recyclerView,postAdapter,Home.this).execute();
-                       dialog.dismiss();
+                            new CreatePost(Home.this, post, recyclerView, postAdapter, Home.this).execute();
+                            dialog.dismiss();
+                        }
                     }
                 });
 
@@ -180,7 +228,7 @@ public class Home extends AppCompatActivity {
         protected Void doInBackground(Void... voids) {
 
             String data;
-            String link=Constants.ip+"myfiles/profile.php";
+            String link=Constants.ip+"android/profile.php";
             try {
 
                 data = URLEncoder.encode("mobile_number","UTF-8")+"="+URLEncoder.encode(mobileno,"UTF-8");

@@ -27,7 +27,7 @@
             android:layout_weight="1"
             android:id="@+id/profile"
             android:padding="10dp"
-            android:drawableTop="@drawable/accsettings"
+            android:drawableTop="@drawable/user"
 
             android:text="My profile"
             style="@style/Base.Widget.AppCompat.Button.Borderless"/>
@@ -35,6 +35,7 @@
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_above="@+id/justid"
+
         android:layout_alignParentTop="true"
         android:layout_height="wrap_content">
 <LinearLayout
@@ -74,7 +75,7 @@
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+        android:layout_marginTop="10dp"
         android:id="@+id/recyclerforposts"
        />
 

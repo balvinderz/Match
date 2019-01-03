@@ -54,8 +54,10 @@
         <activity android:name=".AccountSetting"
             android:label="Account Settings"></activity>
     <activity android:name=".ShowBookings"
-        android:label="Show Bookings" ></activity>
+        android:label="Bookings" ></activity>
         <activity android:name=".Admin"/>
+        <activity android:name=".Bookpage"
+            android:label="Booking"/>
     </application>
     
 

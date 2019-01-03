@@ -51,13 +51,13 @@ public class BookingAdapter  extends RecyclerView.Adapter<BookingAdapter.MyViewH
     {
         Bookingclass booking=bookingclasses.get(position);
         //     new ImageLoader("192.168.1.103/Turf/img/"+comment.getImage(),holder.imageView).execute();
-        holder.number.setText(booking.getNumber());
-        holder.amount.setText(booking.getNumber());
-        holder.name.setText(booking.getName());
-        holder.status.setText(booking.getPaymentstatus());
-        holder.turfname.setText(booking.getTurfname());
-        holder.Date.setText(booking.getBookingdate());
-        holder.time.setText(booking.getSlot());
+        holder.number.setText("Mobile number : "+booking.getNumber());
+        holder.amount.setText("Amount : "+booking.getAmount());
+        holder.name.setText("Name : "+booking.getName());
+        holder.status.setText("Payment Status : "+booking.getPaymentstatus());
+        holder.turfname.setText("Turf name : "+booking.getTurfname());
+        holder.Date.setText("Date : "+booking.getBookingdate());
+        holder.time.setText("Time : "+booking.getSlot());
     }
     @Override
     public int getItemCount() {

@@ -46,7 +46,7 @@ public class CreatePost extends AsyncTask<String,String,String> {
 
         try
         {
-            String link=Constants.ip+"myfiles/post.php";
+            String link=Constants.ip+"android/post.php";
             String data;
 
             data = URLEncoder.encode("name","UTF-8")+"="+URLEncoder.encode(postClass.getName(),"UTF-8");
@@ -110,7 +110,9 @@ public class CreatePost extends AsyncTask<String,String,String> {
 
 
         }
-        new Allposts(context,recyclerView,postAdapter,home).execute();
+        if(Constants.checknet(context))
+
+            new Allposts(context,recyclerView,postAdapter,home).execute();
 
     }
 }

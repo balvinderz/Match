@@ -50,7 +50,9 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.MyViewHo
     {
         CommentClass comment=comments.get(position);
   //     new ImageLoader("192.168.1.103/Turf/img/"+comment.getImage(),holder.imageView).execute();
-        Picasso.get().load(Constants.ip+"Turf/img/"+comment.getImage())
+        if(Constants.checknet(context))
+
+            Picasso.get().load(Constants.ip+"img/"+comment.getImage())
                 .placeholder(R.drawable.placeholder)
                 .into(holder.imageView);        holder.comment.setText(comment.getComment());
         holder.name.setText(comment.getName());

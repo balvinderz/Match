@@ -45,39 +45,37 @@ public class SignUpActivity extends AsyncTask<String,String,String> {
         String password=args[3];
         try
         {
-            String link=Constants.ip+"myfiles/login.php";
+            Log.i("nananame",name);
+            Log.i("nanaemailid",emailid);
+            Log.i("nanamobileno",mobileno);
+            Log.i("nanapassword",password);
+            String link=Constants.ip+"android/signup.php";
             String data;
-            data = URLEncoder.encode("name","UTF-8")+"="+URLEncoder.encode(name,"UTF-8");
-            data+="&" + URLEncoder.encode("email", "UTF-8") + "=" +
+            data = URLEncoder.encode("name", "UTF-8") + "=" + URLEncoder.encode(name, "UTF-8");
+            data += "&" + URLEncoder.encode("email", "UTF-8") + "=" +
                     URLEncoder.encode(emailid, "UTF-8");
-            data+="&" + URLEncoder.encode("password", "UTF-8") + "=" +
-                    URLEncoder.encode(password, "UTF-8");
-            data+="&" + URLEncoder.encode("mobile_number", "UTF-8") + "=" +
+            data += "&" + URLEncoder.encode("mobile_number", "UTF-8") + "=" +
                     URLEncoder.encode(mobileno, "UTF-8");
-            URL url=new URL(link);
+            data += "&" + URLEncoder.encode("password", "UTF-8") + "=" +
+                    URLEncoder.encode(password, "UTF-8");
+            URL url = new URL(link);
             URLConnection connection=url.openConnection();
             connection.setDoOutput(true);
-            OutputStreamWriter writer=new OutputStreamWriter(connection.getOutputStream());
+            OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
             writer.write(data);
             writer.flush();
-            BufferedReader br=new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            StringBuilder sb=new StringBuilder();
-            String line=null;
-            while ((line=br.readLine())!=null)
-            {
+            BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            StringBuilder sb = new StringBuilder();
+            String line = null;
+            while ((line = br.readLine()) != null) {
                 sb.append(line);
                 break;
             }
+            Log.i("nanalog", sb.toString());
             jsonObject=new JSONObject(sb.toString());
-            Log.i("Loggingjson",jsonObject.toString());
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
+
+        } catch (Exception e) {
+           Log.i("nanaerror","erroraaya");
         }
 
         return "";
@@ -85,13 +83,17 @@ public class SignUpActivity extends AsyncTask<String,String,String> {
     @Override
     protected void onPostExecute(String result){
       dialog.dismiss();
-        int success= 0;
+        String success="";
         try {
-            success = jsonObject.getInt("success");
+            success=jsonObject.getString("success");
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        if(success==1)
+        catch (Exception e)
+        {
+           Log.i("nanasuccessvalaerror","erroraarhahai");
+        }
+        if(success.equals("1"))
       {
           Toast.makeText(context,"Id created Successfully",Toast.LENGTH_SHORT).show();
 

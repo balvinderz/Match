@@ -3,47 +3,77 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/serialno"
-        android:text="1."/>
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:id="@+id/layoutinbooking"
+      android:orientation="vertical">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/turfname"
-        android:layout_toRightOf="@+id/serialno"
+        android:textSize="18sp"
+        android:textColor="#000"
+
+        android:layout_margin="10dp"
         android:text="Turf Name : Atletico"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/amount"
+        android:layout_margin="10dp"
         android:text="Amount :1000"
-        android:layout_below="@+id/serialno"/>
+        android:textSize="18sp"
+        android:textColor="#000"
+
+        />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/slots"
         android:text="Slot :5-6pm"
-        android:layout_below="@+id/amount"/>
+        android:textSize="18sp"
+        android:layout_margin="10dp"
+        android:textColor="#000"
+
+        />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:layout_margin="10dp"
+        android:textColor="#000"
+
         android:id="@+id/status"
         android:text="Not payed"
-        android:layout_below="@+id/slots"/>
+        />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/bookingdate"
+        android:layout_margin="10dp"
+
+        android:textSize="18sp"
+        android:textColor="#000"
+
         android:text="Booking date"
-        android:layout_below="@+id/status"/>
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Base.Widget.AppCompat.Button.Colored"
+        android:text="Pay now "
+        android:visibility="gone"
+        android:id="@+id/paybutton"
+        android:textAllCaps="false"/>
+  </LinearLayout>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/Back"
         android:textColor="#000"
         android:text="Back"
+
         android:layout_alignParentBottom="true"
         android:layout_marginRight="10dp"
         style="@style/Base.Widget.AppCompat.Button.Borderless"/>
@@ -59,4 +89,14 @@
 
         android:layout_marginRight="10dp"
         style="@style/Base.Widget.AppCompat.Button.Borderless"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No bookings yet"
+        android:id="@+id/nobookings"
+        android:visibility="gone"
+        android:textColor="#000"
+        android:textSize="18sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"/>
 </RelativeLayout>

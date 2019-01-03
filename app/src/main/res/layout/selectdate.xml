@@ -25,17 +25,31 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+      <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:id="@+id/selecttimeslot"
+          android:textSize="18sp"
+          android:visibility="gone"
+          android:text="Select time"
+          android:fontFamily="@font/mn"
+          android:textColor="#000"
+          android:textStyle="bold"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:focusable="false"
+        android:layout_marginTop="5dp"
         android:hint="Enter Date"
+        android:layout_below="@id/selecttimeslot"
         android:inputType="date"
         android:id="@+id/edittext"/>
+
 <android.support.v7.widget.RecyclerView
     android:layout_width="match_parent"
     android:id="@+id/recyclerforslot"
     android:visibility="gone"
+    android:background="@drawable/gradient"
     android:layout_below="@id/edittext"
     android:layout_height="wrap_content"/>
     </RelativeLayout>
@@ -44,7 +58,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/bookbutton"
-        android:text="book"
+        android:text="Book"
         android:textColor="#fff"
         android:layout_below="@id/card"
         android:background="#000"
@@ -55,21 +69,7 @@
 
         style="@style/Base.Widget.AppCompat.Button.Borderless"
         />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/paylater"
-        android:layout_toEndOf="@+id/bookbutton"
-        android:text="paylater"
-        android:layout_below="@id/card"
-        android:layout_marginTop="20dp"
-        android:textColor="#fff"
-        android:visibility="gone"
-        android:padding="10dp"
-        android:layout_marginStart="20dp"
-        android:background="#000"
-        style="@style/Base.Widget.AppCompat.Button.Borderless"
-        />
+
 </RelativeLayout>
 
 </android.support.v4.widget.NestedScrollView>

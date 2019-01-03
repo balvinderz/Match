@@ -14,12 +14,15 @@
         android:id="@+id/message"
         android:lines="3"
         android:hint="Message"/>
-    <DatePicker
-        android:layout_width="wrap_content"
-        android:minDate="0"
-        android:id="@+id/date"
-        android:layout_marginBottom="30dp"
-        android:layout_height="wrap_content"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="false"
+        android:layout_marginTop="5dp"
+        android:hint="Enter Date on which to play"
+        android:layout_below="@id/selecttimeslot"
+        android:inputType="date"
+        android:id="@+id/datepick"/>
 </LinearLayout>
   <LinearLayout
       android:layout_width="match_parent"

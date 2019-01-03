@@ -1,67 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:layout_height="wrap_content">
-    <android.support.v7.widget.CardView
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_margin="10dp"
+    >
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_marginTop="10dp"
-        android:layout_height="match_parent">
-        <RelativeLayout
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imageofpost"
+            android:layout_width="80dp"
+
+            android:layout_height="80dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/psyduck" />
+
+        <TextView
+            android:id="@+id/nameofposter"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_toEndOf="@id/imageofpost"
+            android:text="Post user"
+            android:textColor="#000" />
 
-            android:layout_height="match_parent">
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="80dp"
-                android:src="@drawable/placeholder"
-                android:paddingTop="10dp"
-                android:id="@+id/imageofpost"
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/nameofposter"
+            android:layout_alignBottom="@+id/date"
+            android:src="@drawable/clock" />
 
-                android:layout_height="80dp" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/imageofpost"
-                android:layout_marginTop="30dp"
-                android:padding="10dp"
-                android:textStyle="bold"
-                android:id="@+id/nameofposter"
-                android:layout_marginLeft="10dp"
-                android:text="place holder name"/>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:id="@+id/view"
-                android:background="#707070"
-                android:layout_marginTop="10dp"
-                android:layout_below="@id/imageofpost"
-                />
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/clock"
-                android:layout_marginTop="15dp"
-                android:id="@+id/clock"
-                android:layout_below="@id/view"
-                android:layout_alignParentStart="true"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_below="@id/view"
-                android:padding="10dp"
-                android:layout_toEndOf="@id/clock"
-                android:id="@+id/date"
-                android:text="placeholder date"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_below="@id/date"
-                android:padding="10dp"
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/nameofposter"
+            android:layout_alignStart="@+id/nameofposter"
 
-                android:text="placeholder post message"
-                android:id="@+id/postmessage"/>
+            android:layout_marginStart="33dp"
+            android:layout_marginTop="14dp"
+            android:text="DATE"
+            android:textColor="#000" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#000"
+            android:id="@+id/view"
+            android:layout_below="@id/imageofpost"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Text"
+            android:id="@+id/postmessage"
+            android:textColor="#000"
+            android:layout_below="@id/view"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_below="@id/postmessage"
+            android:layout_height="wrap_content">
             <Button
                 android:layout_width="wrap_content"
                 android:drawableStart="@drawable/commenticon"
@@ -82,10 +85,8 @@
                 android:layout_toEndOf="@id/commentsbutton"
                 android:textAllCaps="false"
                 style="@style/Base.Widget.AppCompat.Button.Borderless"
-                android:drawableStart="@drawable/phone"/>
+                android:drawableStart="@drawable/phoneblack"/>
+        </LinearLayout>
 
-
-        </RelativeLayout>
-    </android.support.v7.widget.CardView>
-
-</LinearLayout>
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

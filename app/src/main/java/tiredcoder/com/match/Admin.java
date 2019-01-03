@@ -32,6 +32,8 @@ BookingAdapter bookingAdapter;
     setContentView(R.layout.admin);
     recyclerView=findViewById(R.id.recyclerforbooking);
     bookingclass=new ArrayList<>();
+    if(Constants.checknet(Admin.this))
+
     new getbookings().execute();
  }
 public class getbookings extends AsyncTask<String,String,String>
@@ -40,7 +42,7 @@ public class getbookings extends AsyncTask<String,String,String>
     protected String doInBackground(String... strings) {
         try
         {
-            String link=Constants.ip+"myfiles/getbookings.php";
+            String link=Constants.ip+"android/getbookings.php";
 
             URL url=new URL(link);
             URLConnection connection=url.openConnection();

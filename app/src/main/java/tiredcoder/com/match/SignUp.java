@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.util.regex.Pattern;
+
 public class SignUp extends AppCompatActivity {
     EditText name,password,emailid,mobileno;
     Button signup;
@@ -28,8 +30,9 @@ public class SignUp extends AppCompatActivity {
                 String  mobile=mobileno.getText().toString();
                 String email=emailid.getText().toString();
                 String nam=name.getText().toString();
-                if(validate()==1);
-                new SignUpActivity(SignUp.this).execute(nam,email,mobile,passw);
+                if(validate()==1)
+                    if(Constants.checknet(SignUp.this))
+                        new SignUpActivity(SignUp.this).execute(nam,email,mobile,passw);
             }
         });
     }
@@ -41,6 +44,13 @@ public class SignUp extends AppCompatActivity {
             name.requestFocus();
             return -1;
         }
+        else
+            if(!validemail(emailid.getText().toString()))
+            {
+                emailid.setError("Enter valid email id ");
+                emailid.requestFocus();
+                return  -1;
+            }
         else
             if(mobileno.getText().length()!=10)
             {
@@ -57,5 +67,16 @@ public class SignUp extends AppCompatActivity {
                 }
                 return 1;
     }
+    boolean validemail(String email)
+    {
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
+                "[a-zA-Z0-9_+&*-]+)*@" +
+                "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
+                "A-Z]{2,7}$";
 
+        Pattern pat = Pattern.compile(emailRegex);
+        if (email == null)
+            return false;
+        return pat.matcher(email).matches();
+    }
 }

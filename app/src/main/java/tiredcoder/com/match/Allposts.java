@@ -46,7 +46,7 @@ public class Allposts extends AsyncTask<String,String,String> {
     protected String doInBackground(String... strings) {
 
         try {
-            String link = Constants.ip+"myfiles/allposts.php";
+            String link = Constants.ip+"android/allposts.php";
 
 
             URL url = new URL(link);

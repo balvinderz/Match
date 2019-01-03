@@ -11,6 +11,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -93,7 +94,7 @@ CircleImageView imageView;
 
         protected String doInBackground(String... args) {
             try {
-                String link = Constants.ip+"myfiles/comments.php";
+                String link = Constants.ip+"android/comments.php";
                 String data;
                 data = URLEncoder.encode("id", "UTF-8") + "=" + URLEncoder.encode(String.valueOf(postid), "UTF-8");
                 URL url = new URL(link);
@@ -186,7 +187,7 @@ CircleImageView imageView;
 
         protected String doInBackground(String... args) {
             try {
-                String link = Constants.ip+"myfiles/postcomment.php";
+                String link = Constants.ip+"android/postcomment.php";
                 String data;
                 SharedPreferences prefs = getSharedPreferences("userinfo", MODE_PRIVATE);
                 String id = prefs.getString("id", "soja");
@@ -254,7 +255,7 @@ CircleImageView imageView;
         protected String doInBackground(String... args) {
 
             try {
-                String link = Constants.ip+"myfiles/userposts.php";
+                String link = Constants.ip+"android/userposts.php";
                 String data;
                 data = URLEncoder.encode("name", "UTF-8") + "=" + URLEncoder.encode(name, "UTF-8");
 
@@ -282,6 +283,10 @@ CircleImageView imageView;
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
 
             return "";
         }
@@ -289,7 +294,7 @@ CircleImageView imageView;
         @Override
         protected void onPostExecute(String result) {
             dialog.dismiss();
-            Log.i("jsonfile", jsonObject.toString());
+//            Log.i("jsonfile", jsonObject.toString());
             try {
                 JSONArray jsonArray = jsonObject.getJSONArray("posts");
                 postsize = jsonArray.length();
@@ -315,6 +320,22 @@ CircleImageView imageView;
                 Log.i("sizeofarray", String.valueOf(jsonArray.length()));
             } catch (JSONException e) {
                 e.printStackTrace();
+            }catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+            if(posts!=null) {
+                postedon.setText("Posted on : " + posts[indexofpost].getDate());
+                time.setText("Time :" + posts[indexofpost].getTime());
+                message.setText(posts[indexofpost].getMessage());
+                new ImageLoader(Constants.ip + "img/" + posts[indexofpost].getImagename(), imageView).execute();
+            }
+            else
+            {
+                CardView cardView=findViewById(R.id.cardview);
+                cardView.setVisibility(View.GONE);
+                TextView textView=findViewById(R.id.nopostyet);
+                textView.setVisibility(View.VISIBLE);
             }
             commentbutton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -353,10 +374,7 @@ CircleImageView imageView;
                 }
             });
             back.setVisibility(View.GONE);
-            postedon.setText("Posted on : " + posts[indexofpost].getDate());
-            time.setText("Time :" + posts[indexofpost].getTime());
-            message.setText(posts[indexofpost].getMessage());
-            new ImageLoader(Constants.ip+"Turf/img/"+posts[indexofpost].getImagename(),imageView).execute();
+
             next.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -365,7 +383,7 @@ CircleImageView imageView;
                     postedon.setText("Posted on : " + posts[indexofpost].getDate());
                     time.setText("Time :" + posts[indexofpost].getTime());
                     message.setText(posts[indexofpost].getMessage());
-                    new ImageLoader(Constants.ip+"Turf/img/"+posts[indexofpost].getImagename(),imageView).execute();
+                    new ImageLoader(Constants.ip+"img/"+posts[indexofpost].getImagename(),imageView).execute();
 
                     if (indexofpost > 0)
                         back.setVisibility(View.VISIBLE);
@@ -380,7 +398,7 @@ CircleImageView imageView;
                     postedon.setText("Posted on : " + posts[indexofpost].getDate());
                     time.setText("Time :" + posts[indexofpost].getTime());
                     message.setText(posts[indexofpost].getMessage());
-                    new ImageLoader(Constants.ip+"Turf/img/"+posts[indexofpost].getImagename(),imageView).execute();
+                    new ImageLoader(Constants.ip+"img/"+posts[indexofpost].getImagename(),imageView).execute();
 
                     if (indexofpost < postsize)
                         next.setVisibility(View.VISIBLE);
@@ -405,7 +423,7 @@ CircleImageView imageView;
         @Override
         protected String doInBackground(String... args) {
             try {
-                String link = Constants.ip+"myfiles/deletepost.php";
+                String link = Constants.ip+"android/deletepost.php";
                 String data;
                 data = URLEncoder.encode("postid", "UTF-8") + "=" + URLEncoder.encode(String.valueOf(posts[indexofpost].getId()), "UTF-8");
 
@@ -441,7 +459,9 @@ CircleImageView imageView;
                 finish();
             else {
                 indexofpost=0;
-                new getPosts(ShowPosts.this, name).execute();
+                if(Constants.checknet(ShowPosts.this))
+
+                    new getPosts(ShowPosts.this, name).execute();
             }
         }
 

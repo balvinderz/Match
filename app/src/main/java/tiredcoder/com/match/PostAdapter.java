@@ -88,7 +88,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.MyViewHolder> 
       //  new ImageLoader(Constants.ip+"Turf/img/"+post.getImagename(),holder.imageView).execute();
         holder.date.setText(post.getDate());
         holder.name.setText(post.getName());
-        Picasso.get().load(Constants.ip+"Turf/img/"+post.getImagename())
+        Picasso.get().load(Constants.ip+"img/"+post.getImagename())
                 .placeholder(R.drawable.placeholder)
                 .into(holder.imageView);
         holder.postmessage.setText(post.getMessage());
@@ -145,7 +145,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.MyViewHolder> 
 
         protected String doInBackground(String... args) {
             try {
-                String link = Constants.ip+"myfiles/comments.php";
+                String link = Constants.ip+"android/comments.php";
                 String data;
                 data = URLEncoder.encode("id", "UTF-8") + "=" + URLEncoder.encode(String.valueOf(postid), "UTF-8");
                 URL url = new URL(link);
@@ -210,7 +210,9 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.MyViewHolder> 
                         comment.setError("Enter comment first");
                     } else {
                         comment.setText("");
-                        new PostAdapter.postcomment(comm,postid).execute();
+                        if(Constants.checknet(context))
+
+                            new PostAdapter.postcomment(comm,postid).execute();
 
                      }
                 }
@@ -239,7 +241,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.MyViewHolder> 
 
         protected String doInBackground(String... args) {
             try {
-                String link = Constants.ip+"myfiles/postcomment.php";
+                String link = Constants.ip+"android/postcomment.php";
                 String data;
                 SharedPreferences prefs = home.getSharedPreferences("userinfo", Context.MODE_PRIVATE);
                 String id = prefs.getString("id", "soja");

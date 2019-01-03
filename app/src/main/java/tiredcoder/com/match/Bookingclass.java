@@ -3,6 +3,16 @@ package tiredcoder.com.match;
 public class Bookingclass {
     String turfname,bookingdate,slot,paymentstatus,amount;
     String time,name,number;
+    String id;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getTurfname() {
         return turfname;
     }

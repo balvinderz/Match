@@ -45,7 +45,7 @@ public class AccountSetting extends AppCompatActivity {
     int flag=0;
     private static final String TAG = MainActivity.class.getSimpleName();
     private String selectedFilePath=null;
-    private String SERVER_URL = Constants.ip+"myfiles/upload.php";
+    private String SERVER_URL = Constants.ip+"android/upload.php";
     SharedPreferences preferences;
     String fileName;
     SharedPreferences.Editor editor;
@@ -69,7 +69,8 @@ public class AccountSetting extends AppCompatActivity {
         fileName=preferences.getString("image",null);
         email.setText(preferences.getString("email",null));
         password.setText(preferences.getString("password",null));
-        Picasso.get().load(Constants.ip+"Turf/img/"+preferences.getString("image",null)).into(imageView);
+        if(Constants.checknet(AccountSetting.this))
+            Picasso.get().load(Constants.ip+"img/"+preferences.getString("image",null)).into(imageView);
       //  new ImageLoader(Constants.ip+"Turf/img/"+preferences.getString("image",null),imageView).execute();
         button= findViewById(R.id.changesettings);
         button.setOnClickListener(new View.OnClickListener() {
@@ -109,7 +110,8 @@ public class AccountSetting extends AppCompatActivity {
 //                        new ImageLoader("http://192.168.1.103/Turf/img/" + preferences.getString("image", null), imageView).execute();
                         editor.apply();
                         editor.commit();
-                        new changeSettings(fileName, name.getText().toString(), email.getText().toString(), preferences.getString("id", null), preferences.getString("mobileno", null), password.getText().toString()).execute();
+                        if(Constants.checknet(AccountSetting.this))
+                            new changeSettings(fileName, name.getText().toString(), email.getText().toString(), preferences.getString("id", null), preferences.getString("mobileno", null), password.getText().toString()).execute();
 
 
 
@@ -256,7 +258,6 @@ public class AccountSetting extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(AccountSetting.this,"File Upload completed.\n\n You can see the uploaded file here: \n\n" + "http://coderefer.com/extras/uploads/"+ fileName,Toast.LENGTH_SHORT).show();
                         }
                     });
                 }else
@@ -264,7 +265,6 @@ public class AccountSetting extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(AccountSetting.this,"Nhi chal rha ye",Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
@@ -279,7 +279,10 @@ public class AccountSetting extends AppCompatActivity {
                 dataOutputStream.flush();
                 dataOutputStream.close();
                 Log.i("soja",fileName);
-               new ImageLoader(Constants.ip+"Turf/img/"+fileName,imageView).execute();
+                if(Constants.checknet(AccountSetting.this))
+               new ImageLoader(Constants.ip+"img/"+fileName,imageView).execute();
+
+
 
 
             } catch (FileNotFoundException e) {
@@ -371,7 +374,7 @@ return 1;
        {
            try
            {
-               String link=Constants.ip+"myfiles/changesettings.php";
+               String link=Constants.ip+"android/changesettings.php";
                String data;
                data = URLEncoder.encode("imagename", "UTF-8") + "=" + URLEncoder.encode(image, "UTF-8");
                data += "&" + URLEncoder.encode("name", "UTF-8") + "=" +
