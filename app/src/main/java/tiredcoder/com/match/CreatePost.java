@@ -92,7 +92,7 @@ public class CreatePost extends AsyncTask<String,String,String> {
     }
     @Override
     protected void onPostExecute(String result){
-       // dialog.dismiss();
+        // dialog.dismiss();
         int success= 0;
         try {
             success = jsonObject.getInt("success");

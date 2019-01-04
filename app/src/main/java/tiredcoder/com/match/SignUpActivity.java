@@ -43,6 +43,7 @@ public class SignUpActivity extends AsyncTask<String,String,String> {
         String emailid=args[1];
         String mobileno=args[2];
         String password=args[3];
+        String username=args[4];
         try
         {
             Log.i("nananame",name);
@@ -58,6 +59,8 @@ public class SignUpActivity extends AsyncTask<String,String,String> {
                     URLEncoder.encode(mobileno, "UTF-8");
             data += "&" + URLEncoder.encode("password", "UTF-8") + "=" +
                     URLEncoder.encode(password, "UTF-8");
+            data += "&" + URLEncoder.encode("username", "UTF-8") + "=" +
+                    URLEncoder.encode(username, "UTF-8");
             URL url = new URL(link);
             URLConnection connection=url.openConnection();
             connection.setDoOutput(true);
@@ -100,7 +103,7 @@ public class SignUpActivity extends AsyncTask<String,String,String> {
       }
       else
         {
-            Toast.makeText(context,"Email Id or Mobile No already exists",Toast.LENGTH_SHORT).show();
+            Toast.makeText(context,"Email id, Mobile No or Username already exists",Toast.LENGTH_SHORT).show();
 
         }
     }

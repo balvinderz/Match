@@ -45,11 +45,11 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class Home extends AppCompatActivity {
-   TextView email,name;
-   String mobileno,pass;
-   ImageView imageView;
-   String bookingid,nameforposting,mobilenoforposting;
-   JSONObject jsonObject;
+    TextView email,name;
+    String mobileno,pass;
+    ImageView imageView;
+    String bookingid,nameforposting,mobilenoforposting;
+    JSONObject jsonObject;
     PostClass post=new PostClass();
     Button bookturf;
     Button profile;
@@ -87,10 +87,10 @@ public class Home extends AppCompatActivity {
         postbutton=findViewById(R.id.PostButton);
 //    getSupportActionBar().setTitle(Html.fromHtml("<font color='#000'>"+"Home</font>"));
         mobileno=getIntent().getStringExtra("mobileno");
-     //   Log.i("mobileno",mobileno);
+        //   Log.i("mobileno",mobileno);
         recyclerView=findViewById(R.id.recyclerforposts);
-       //  sharedPreferences=getPreferences(MODE_PRIVATE);
-         editor=getSharedPreferences("userinfo", MODE_PRIVATE).edit();
+        //  sharedPreferences=getPreferences(MODE_PRIVATE);
+        editor=getSharedPreferences("userinfo", MODE_PRIVATE).edit();
         pass=getIntent().getStringExtra("pass");
         editor.putString("password",pass);
         editor.putString("mobileno",mobileno);
@@ -126,7 +126,7 @@ public class Home extends AppCompatActivity {
                 dialog.setContentView(R.layout.postlayout);
                 final TextView message=dialog.findViewById(R.id.message);
                 dialog.setTitle("Post");
-                 yourEditText = (EditText) dialog.findViewById(R.id.datepick);
+                yourEditText = (EditText) dialog.findViewById(R.id.datepick);
                 yourEditText.setOnClickListener(new View.OnClickListener() {
 
                     @Override
@@ -135,8 +135,8 @@ public class Home extends AppCompatActivity {
                         // To show current date in the datepicker
                         Calendar mcurrentDate = Calendar.getInstance();
                         mYear = mcurrentDate.get(Calendar.YEAR);
-                            mMonth = mcurrentDate.get(Calendar.MONTH);
-                             mDay = mcurrentDate.get(Calendar.DAY_OF_MONTH);
+                        mMonth = mcurrentDate.get(Calendar.MONTH);
+                        mDay = mcurrentDate.get(Calendar.DAY_OF_MONTH);
                         final DatePickerDialog mDatePicker = new DatePickerDialog(Home.this, new DatePickerDialog.OnDateSetListener() {
                             public void onDateSet(DatePicker datepicker, int selectedyear, int selectedmonth, int selectedday) {
                                 Calendar myCalendar = Calendar.getInstance();
@@ -181,17 +181,17 @@ public class Home extends AppCompatActivity {
                             message.requestFocus();
                         }
                         else
-                            if (yourEditText.getText().toString().equals(""))
-                            {
-                                yourEditText.setError("Select Date first");
+                        if (yourEditText.getText().toString().equals(""))
+                        {
+                            yourEditText.setError("Select Date first");
                             Toast.makeText(Home.this,"Select Date first",Toast.LENGTH_SHORT).show();
-                            }
-                                else {
+                        }
+                        else {
                             String messageforpost = message.getText().toString();
 
                             String name = prefs.getString("name", null);
 
-                           // String strDate = dateFormat.format(d);
+                            // String strDate = dateFormat.format(d);
                             String image = prefs.getString("image", "soja");
                             post.setMessage(message.getText().toString());
                             post.setName(name);
@@ -200,9 +200,9 @@ public class Home extends AppCompatActivity {
                             post.setDate(yourEditText.getText().toString());
                             post.setImagename(image);
                             post.setId(Integer.parseInt(prefs.getString("id", null)));
-                                if(Constants.checknet(Home.this))
+                            if(Constants.checknet(Home.this))
 
-                            new CreatePost(Home.this, post, recyclerView, postAdapter, Home.this).execute();
+                                new CreatePost(Home.this, post, recyclerView, postAdapter, Home.this).execute();
                             dialog.dismiss();
                         }
                     }
@@ -267,7 +267,7 @@ public class Home extends AppCompatActivity {
 
             try {
 //                name.setText(jsonObject.getString("name"));
-  //              email.setText(jsonObject.getString("email"));
+                //              email.setText(jsonObject.getString("email"));
                 nameforposting=jsonObject.getString("name");
                 editor.putString("name",jsonObject.getString("name"));
                 editor.putString("email",jsonObject.getString("email"));

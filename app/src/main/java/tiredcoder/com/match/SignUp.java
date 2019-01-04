@@ -10,7 +10,7 @@ import android.widget.EditText;
 import java.util.regex.Pattern;
 
 public class SignUp extends AppCompatActivity {
-    EditText name,password,emailid,mobileno;
+    EditText name,password,emailid,mobileno,username;
     Button signup;
     @Override
     protected  void onCreate(Bundle savedInstanceState)
@@ -20,6 +20,7 @@ public class SignUp extends AppCompatActivity {
         name=findViewById(R.id.name);
         password=findViewById(R.id.password);
         emailid=findViewById(R.id.email);
+        username=findViewById(R.id.username);
         mobileno=findViewById(R.id.mobileno);
         signup=findViewById(R.id.signup);
 //        getActionBar().setTitle(Html.fromHtml("<font color='#0000FF'>SignUp</font>") + "tittle");
@@ -30,9 +31,10 @@ public class SignUp extends AppCompatActivity {
                 String  mobile=mobileno.getText().toString();
                 String email=emailid.getText().toString();
                 String nam=name.getText().toString();
+                String user=username.getText().toString();
                 if(validate()==1)
                     if(Constants.checknet(SignUp.this))
-                        new SignUpActivity(SignUp.this).execute(nam,email,mobile,passw);
+                        new SignUpActivity(SignUp.this).execute(nam,email,mobile,passw,user);
             }
         });
     }
@@ -51,6 +53,13 @@ public class SignUp extends AppCompatActivity {
                 emailid.requestFocus();
                 return  -1;
             }
+            else
+                if(username.getText().toString().equals(""))
+                {
+                    username.setError("Username cannot be empty");
+                    username.requestFocus();
+                    return -1;
+                }
         else
             if(mobileno.getText().length()!=10)
             {
