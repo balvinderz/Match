@@ -2,15 +2,22 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:orientation="horizontal"
-    android:layout_margin="20dp"
+    android:id="@+id/linear"
+    android:layout_marginTop="20dp"
+    android:background="@drawable/borderlinear"
     android:layout_height="wrap_content">
     <CheckBox
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" 
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+
         android:id="@+id/check"/>
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:text="placeholder time"
+        android:textSize="18sp"
+        android:textColor="#000"
+        android:padding="3dp"
         android:id="@+id/select_time"
         android:layout_height="wrap_content" />
 

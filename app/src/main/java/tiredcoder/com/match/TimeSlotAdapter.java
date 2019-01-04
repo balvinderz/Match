@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -20,12 +21,15 @@ public class TimeSlotAdapter extends RecyclerView.Adapter<TimeSlotAdapter.MyView
     {
         public CheckBox checkBox;
         public TextView time;
+        public LinearLayout layout;
         public  MyViewHolder(View view)
         {
             super(view);
             checkBox=view.findViewById(R.id.check);
             time=view.findViewById(R.id.select_time);
+            layout=view.findViewById(R.id.linear);
         }
+
 
     }
     public TimeSlotAdapter(ArrayList<timeslot> timeslots,Context context)
@@ -46,6 +50,38 @@ public class TimeSlotAdapter extends RecyclerView.Adapter<TimeSlotAdapter.MyView
         final timeslot timeslot=timeslots.get(position);
         //     new ImageLoader("192.168.1.103/Turf/img/"+comment.getImage(),holder.imageView).execute();
         holder.time.setText(timeslot.getTime());
+        if(holder.time.getText().toString().equals("Not available"))
+        {
+            holder.layout.setBackgroundColor(context.getResources().getColor(R.color.red));
+        }
+        holder.layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(BookTurf.integerSet.contains(String.valueOf(holder.getAdapterPosition())))
+                {
+                    if(holder.time.getText().toString().equals("Not available"))
+                    {
+                        holder.layout.setBackgroundColor(context.getResources().getColor(R.color.red));
+                    }
+                    else {
+                        BookTurf.integerSet.remove(String.valueOf(holder.getAdapterPosition()));
+                        BookTurf.timeset.remove(timeslot.getTime());
+                        holder.layout.setBackgroundColor(context.getResources().getColor(R.color.gray));
+                    }
+                }
+                else
+                { if(holder.time.getText().toString().equals("Not available"))
+                {
+                    holder.layout.setBackgroundColor(context.getResources().getColor(R.color.red));
+                }else
+                {
+                    BookTurf.integerSet.add(String.valueOf(holder.getAdapterPosition()));
+                    BookTurf.timeset.add(timeslot.getTime());
+                    holder.layout.setBackgroundColor(context.getResources().getColor(R.color.green));
+
+                }}
+            }
+        });
         holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                                                 @Override
                                                 public void onCheckedChanged(CompoundButton buttonView,boolean isChecked)

@@ -37,9 +37,8 @@
         <activity android:name=".SignUp"
             android:label="SignUp"></activity>
         <activity android:name=".Home"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
 
-            android:label="Profile"
+            android:label="Match"
             ></activity>
         <activity android:name=".BookTurf"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"

@@ -3,100 +3,121 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-  <LinearLayout
+  <ScrollView
       android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:id="@+id/layoutinbooking"
+        android:orientation="vertical">
+      <de.hdodenhof.circleimageview.CircleImageView
+          android:layout_width="match_parent"
+          android:layout_height="150dp"
+          android:src="@drawable/psyduck"
+          android:id="@+id/imageofbooker"
+          android:scaleType="centerCrop"/>
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_gravity="center"
+          android:layout_height="wrap_content"
+          android:id="@+id/turfname"
+          android:textSize="18sp"
+          android:textColor="#000"
+
+          android:layout_margin="10dp"
+          android:text="Turf Name : Atletico"/>
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:id="@+id/amount"
+          android:layout_margin="10dp"
+          android:text="Amount :1000"
+          android:layout_gravity="center"
+
+          android:textSize="18sp"
+          android:textColor="#000"
+
+          />
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:id="@+id/slots"
+          android:text="Slot :5-6pm"
+          android:layout_gravity="center"
+
+          android:textSize="18sp"
+          android:layout_margin="10dp"
+
+          android:textColor="#000"
+
+          />
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:textSize="18sp"
+          android:layout_margin="10dp"
+          android:textColor="#28a745"
+          android:layout_gravity="center"
+
+          android:id="@+id/status"
+          android:text="Not payed"
+          />
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:id="@+id/bookingdate"
+          android:layout_margin="10dp"
+
+          android:textSize="18sp"
+          android:textColor="#000"
+          android:layout_gravity="center"
+
+          android:text="Booking date"
+          />
+      <Button
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          style="@style/Base.Widget.AppCompat.Button.Colored"
+          android:text="Pay now "
+          android:visibility="gone"
+          android:layout_marginTop="5dp"
+          android:layout_gravity="center"
+          android:id="@+id/paybutton"
+          android:textAllCaps="false"/>
+    </LinearLayout>
+  </ScrollView>
+  <Button
+      android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:id="@+id/layoutinbooking"
-      android:orientation="vertical">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/turfname"
-        android:textSize="18sp"
-        android:textColor="#000"
+      android:id="@+id/Back"
+      android:textColor="#000"
+      android:text="Back"
 
-        android:layout_margin="10dp"
-        android:text="Turf Name : Atletico"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/amount"
-        android:layout_margin="10dp"
-        android:text="Amount :1000"
-        android:textSize="18sp"
-        android:textColor="#000"
+      android:layout_alignParentBottom="true"
+      android:layout_marginRight="10dp"
+      style="@style/Base.Widget.AppCompat.Button.Borderless"/>
+  <Button
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:id="@+id/Next"
+      android:textColor="#000"
+      android:text="Next"
+      android:layout_alignParentEnd="true"
+      android:layout_alignParentRight="true"
+      android:layout_alignParentBottom="true"
 
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/slots"
-        android:text="Slot :5-6pm"
-        android:textSize="18sp"
-        android:layout_margin="10dp"
-        android:textColor="#000"
-
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:layout_margin="10dp"
-        android:textColor="#000"
-
-        android:id="@+id/status"
-        android:text="Not payed"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/bookingdate"
-        android:layout_margin="10dp"
-
-        android:textSize="18sp"
-        android:textColor="#000"
-
-        android:text="Booking date"
-        />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/Base.Widget.AppCompat.Button.Colored"
-        android:text="Pay now "
-        android:visibility="gone"
-        android:id="@+id/paybutton"
-        android:textAllCaps="false"/>
-  </LinearLayout>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/Back"
-        android:textColor="#000"
-        android:text="Back"
-
-        android:layout_alignParentBottom="true"
-        android:layout_marginRight="10dp"
-        style="@style/Base.Widget.AppCompat.Button.Borderless"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/Next"
-        android:textColor="#000"
-        android:text="Next"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-
-        android:layout_marginRight="10dp"
-        style="@style/Base.Widget.AppCompat.Button.Borderless"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="No bookings yet"
-        android:id="@+id/nobookings"
-        android:visibility="gone"
-        android:textColor="#000"
-        android:textSize="18sp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"/>
+      android:layout_marginRight="10dp"
+      style="@style/Base.Widget.AppCompat.Button.Borderless"/>
+  <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="No bookings yet"
+      android:id="@+id/nobookings"
+      android:visibility="gone"
+      android:textColor="#000"
+      android:textSize="18sp"
+      android:layout_centerHorizontal="true"
+      android:layout_marginTop="30dp"/>
 </RelativeLayout>

@@ -242,7 +242,8 @@ public class Bookpage extends AppCompatActivity {
                         URLEncoder.encode(amount, "UTF-8");
                 data += "&" + URLEncoder.encode("payment_status", "UTF-8") + "=" +
                         URLEncoder.encode(payment, "UTF-8");
-
+                data += "&" + URLEncoder.encode("image", "UTF-8") + "=" +
+                        URLEncoder.encode(preferences.getString("image",null), "UTF-8");
                 URL url = new URL(link);
                 URLConnection connection = url.openConnection();
                 connection.setDoOutput(true);

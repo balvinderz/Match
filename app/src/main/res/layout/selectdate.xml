@@ -11,6 +11,7 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:text="Select Date"
+      android:padding="10dp"
       android:textSize="25sp"
       android:fontFamily="@font/mn"
       android:textColor="#000"
@@ -49,7 +50,8 @@
     android:layout_width="match_parent"
     android:id="@+id/recyclerforslot"
     android:visibility="gone"
-    android:background="@drawable/gradient"
+    android:layout_marginStart="10dp"
+    android:layout_marginEnd="10dp"
     android:layout_below="@id/edittext"
     android:layout_height="wrap_content"/>
     </RelativeLayout>

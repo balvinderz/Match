@@ -1,92 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="wrap_content"
-    android:layout_width="match_parent"
-    android:layout_margin="10dp"
-   >
-
-    <RelativeLayout
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:id="@+id/layoutinbooking"
         android:orientation="vertical">
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/imageofpost"
-            android:layout_width="80dp"
-
-            android:layout_height="80dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/psyduck" />
-
-        <TextView
-            android:id="@+id/nameofposter"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_toEndOf="@id/imageofpost"
-            android:text="Post user"
-            android:textColor="#000" />
-
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/nameofposter"
-            android:layout_alignBottom="@+id/date"
-            android:src="@drawable/clock" />
-
-        <TextView
-            android:id="@+id/date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/nameofposter"
-            android:layout_alignStart="@+id/nameofposter"
-
-            android:layout_marginStart="33dp"
-            android:layout_marginTop="14dp"
-            android:text="DATE"
-            android:textColor="#000" />
-        <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#000"
-            android:id="@+id/view"
-            android:layout_below="@id/imageofpost"/>
+            android:layout_height="200dp"
+            android:src="@drawable/psyduck"
+            android:scaleType="fitXY"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:id="@+id/turfname"
+            android:textSize="18sp"
+            android:textColor="#000"
 
+            android:layout_margin="10dp"
+            android:text="Turf Name : Atletico"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Text"
-            android:id="@+id/postmessage"
-            android:textColor="#000"
-            android:layout_below="@id/view"/>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_below="@id/postmessage"
-            android:layout_height="wrap_content">
-            <Button
-                android:layout_width="wrap_content"
-                android:drawableStart="@drawable/commenticon"
-                android:text="  Comment"
-                android:textAllCaps="false"
-                android:id="@+id/commentsbutton"
-                android:layout_below="@id/postmessage"
-                style="@style/Base.Widget.AppCompat.Button.Borderless"
-                android:layout_marginTop="10dp"
-                android:layout_height="wrap_content" />
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text=" Mobile"
-                android:id="@+id/contactno"
-                android:layout_below="@id/postmessage"
-                android:layout_toEndOf="@id/commentsbutton"
-                android:textAllCaps="false"
-                style="@style/Base.Widget.AppCompat.Button.Borderless"
-                android:drawableStart="@drawable/phoneblack"/>
-        </LinearLayout>
+            android:id="@+id/amount"
+            android:layout_margin="10dp"
+            android:text="Amount :1000"
+            android:layout_gravity="center"
 
-    </RelativeLayout>
-</android.support.v7.widget.CardView>
+            android:textSize="18sp"
+            android:textColor="#000"
+
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/slots"
+            android:text="Slot :5-6pm"
+            android:layout_gravity="center"
+
+            android:textSize="18sp"
+            android:layout_margin="10dp"
+
+            android:textColor="#000"
+
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:layout_margin="10dp"
+            android:textColor="#28a745"
+            android:layout_gravity="center"
+
+            android:id="@+id/status"
+            android:text="Not payed"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/bookingdate"
+            android:layout_margin="10dp"
+
+            android:textSize="18sp"
+            android:textColor="#000"
+            android:layout_gravity="center"
+
+            android:text="Booking date"
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Base.Widget.AppCompat.Button.Colored"
+            android:text="Pay now "
+            android:visibility="gone"
+            android:id="@+id/paybutton"
+            android:textAllCaps="false"/>
+    </LinearLayout>
+    </ScrollView>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Back"
+        android:textColor="#000"
+        android:text="Back"
+
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="10dp"
+        style="@style/Base.Widget.AppCompat.Button.Borderless"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Next"
+        android:textColor="#000"
+        android:text="Next"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+
+        android:layout_marginRight="10dp"
+        style="@style/Base.Widget.AppCompat.Button.Borderless"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No bookings yet"
+        android:id="@+id/nobookings"
+        android:visibility="gone"
+        android:textColor="#000"
+        android:textSize="18sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"/>
+</RelativeLayout>

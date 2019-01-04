@@ -4,6 +4,15 @@ public class Bookingclass {
     String turfname,bookingdate,slot,paymentstatus,amount;
     String time,name,number;
     String id;
+    String image;
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     public String getId() {
         return id;

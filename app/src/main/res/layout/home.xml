@@ -2,11 +2,14 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+
     android:layout_height="wrap_content">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:descendantFocusability="beforeDescendants"
+        android:focusableInTouchMode="true"
         android:background="#f8f9fa"
         android:id="@+id/justid"
         android:elevation="20dp"
@@ -18,7 +21,7 @@
             android:padding="10dp"
             android:layout_weight="1"
             android:id="@+id/bookturf"
-            android:drawableTop="@drawable/bookblack"
+            android:drawableTop="@drawable/bookblue"
             android:text="Book TURF"
             style="@style/Base.Widget.AppCompat.Button.Borderless"/>
         <Button
@@ -27,7 +30,7 @@
             android:layout_weight="1"
             android:id="@+id/profile"
             android:padding="10dp"
-            android:drawableTop="@drawable/user"
+            android:drawableTop="@drawable/userblue"
 
             android:text="My profile"
             style="@style/Base.Widget.AppCompat.Button.Borderless"/>
@@ -38,48 +41,66 @@
 
         android:layout_alignParentTop="true"
         android:layout_height="wrap_content">
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:id="@+id/layout"
-    android:layout_height="match_parent">
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
         <LinearLayout
-            android:layout_width="match_parent"
+            xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
             android:orientation="vertical"
-            android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Don't Have Enough Players  ?"
-            android:layout_marginLeft="10dp"
+            android:id="@+id/layout"
+            android:layout_height="match_parent">
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Don't Have Enough Players  ?"
+                        android:layout_marginLeft="10dp"
+                        android:lines="3"
+                        android:id="@+id/message"
 
-            android:layout_marginBottom="50dp"
-            android:layout_marginTop="10dp"
-            />
-            <Button
-                android:layout_width="wrap_content"
+                        android:layout_marginTop="10dp"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginStart="10dp"
+                        android:textColor="#000"
+                        android:text="Date on which you would like to play?"
+                        android:layout_height="wrap_content" />
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:hint="dd-mm-yyyy"
+                        android:id="@+id/datepick"
+                        android:focusable="false"
+                        android:textColor="#000"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_height="wrap_content" />
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Post"
+                        android:id="@+id/PostButton"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginStart="10dp"
+                        android:textColor="#fff"
+                        android:background="#007bff"
+                        android:layout_marginBottom="10dp"
+                        style="@style/Base.Widget.AppCompat.Button.Borderless"/>
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Post"
-                android:id="@+id/PostButton"
-                android:textColor="#fff"
-                android:layout_marginLeft="10dp"
-                android:background="#000"
-                android:layout_marginBottom="10dp"
-                style="@style/Base.Widget.AppCompat.Button.Borderless"/>
+                android:layout_marginTop="10dp"
+                android:id="@+id/recyclerforposts"
+                />
+
         </LinearLayout>
-
-    </android.support.v7.widget.CardView>
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:id="@+id/recyclerforposts"
-       />
-
-</LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 
 </RelativeLayout>

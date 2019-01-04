@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 import com.paytm.pgsdk.PaytmOrder;
 import com.paytm.pgsdk.PaytmPGService;
 import com.paytm.pgsdk.PaytmPaymentTransactionCallback;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -49,7 +51,7 @@ public class ShowBookings extends AppCompatActivity {
     int bookingsize;
     Bookingclass[] bookings;
     Button pay;
-
+    ImageView imageView;
     @Override
     protected void onCreate(Bundle state) {
         super.onCreate(state);
@@ -61,6 +63,7 @@ public class ShowBookings extends AppCompatActivity {
         slot = findViewById(R.id.slots);
         paymentstatus = findViewById(R.id.status);
         amount = findViewById(R.id.amount);
+        imageView=findViewById(R.id.imageofbooker);
         back = findViewById(R.id.Back);
         pay = findViewById(R.id.paybutton);
         if(Constants.checknet(ShowBookings.this))
@@ -149,6 +152,7 @@ public class ShowBookings extends AppCompatActivity {
                     bookings[i].setTurfname((String) object.get("turf_name"));
                     bookings[i].setSlot((String) object.getString("slot"));
                     bookings[i].setId((String) object.get("id"));
+                    bookings[i].setImage((String)object.get("image"));
                 }
                 Log.i("sizeofarray", String.valueOf(jsonArray.length()));
             } catch (JSONException e) {
@@ -171,8 +175,14 @@ public class ShowBookings extends AppCompatActivity {
                 paymentstatus.setText("Payment Status : " + bookings[indexofpost].getPaymentstatus());
                 amount.setText("Amount : " + bookings[indexofpost].getAmount());
                 booking_date.setText("Booking date : " + bookings[indexofpost].getBookingdate());
+                Picasso.get().load(Constants.ip+"img/"+bookings[indexofpost].getImage()).into(imageView);
                 if (bookings[indexofpost].getPaymentstatus().equals("unpaid")) {
+                    paymentstatus.setTextColor(getResources().getColor(R.color.red));
                     pay.setVisibility(View.VISIBLE);
+                } else {
+                    paymentstatus.setTextColor(getResources().getColor(R.color.green));
+
+                    pay.setVisibility(View.GONE);
                 }
             }
             //  new ImageLoader("http://192.168.1.103/Turf/img/"+posts[indexofpost].getImagename(),imageView).execute();
@@ -186,9 +196,14 @@ public class ShowBookings extends AppCompatActivity {
                     paymentstatus.setText("Payment Status : "+bookings[indexofpost].getPaymentstatus());
                     amount.setText("Amount : "+bookings[indexofpost].getAmount());
                     booking_date.setText("Booking date : "+bookings[indexofpost].getBookingdate());
+                    Picasso.get().load(Constants.ip+"img/"+bookings[indexofpost].getImage()).into(imageView);
+
                     if (bookings[indexofpost].getPaymentstatus().equals("unpaid")) {
+                        paymentstatus.setTextColor(getResources().getColor(R.color.red));
                         pay.setVisibility(View.VISIBLE);
                     } else {
+                        paymentstatus.setTextColor(getResources().getColor(R.color.green));
+
                         pay.setVisibility(View.GONE);
                     }
                     if (indexofpost > 0)
@@ -305,9 +320,14 @@ public class ShowBookings extends AppCompatActivity {
                     paymentstatus.setText("Payment Status : "+bookings[indexofpost].getPaymentstatus());
                     amount.setText("Amount : "+bookings[indexofpost].getAmount());
                     booking_date.setText("Booking date : "+bookings[indexofpost].getBookingdate());
+                    Picasso.get().load(Constants.ip+"img/"+bookings[indexofpost].getImage()).into(imageView);
+
                     if (bookings[indexofpost].getPaymentstatus().equals("unpaid")) {
+                        paymentstatus.setTextColor(getResources().getColor(R.color.red));
                         pay.setVisibility(View.VISIBLE);
                     } else {
+                        paymentstatus.setTextColor(getResources().getColor(R.color.green));
+
                         pay.setVisibility(View.GONE);
                     }
                     if (indexofpost < bookingsize)
