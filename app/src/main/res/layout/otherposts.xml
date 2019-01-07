@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
+<androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_margin="10dp"
     app:cardPreventCornerOverlap="false"
-    app:cardBackgroundColor="#D3D3D3"
+    app:cardBackgroundColor="#F0F0F0"
     >
 
     <RelativeLayout
@@ -95,4 +95,4 @@
         </LinearLayout>
 
     </RelativeLayout>
-</android.support.v7.widget.CardView>
+</androidx.cardview.widget.CardView>

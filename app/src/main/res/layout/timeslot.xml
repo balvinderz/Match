@@ -1,24 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="wrap_content"
     android:orientation="horizontal"
     android:id="@+id/linear"
     android:layout_marginTop="20dp"
-    android:background="@drawable/borderlinear"
     android:layout_height="wrap_content">
-    <CheckBox
-        android:layout_width="wrap_content"
+    <Button
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:visibility="gone"
-
-        android:id="@+id/check"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:text="placeholder time"
-        android:textSize="18sp"
-        android:textColor="#000"
-        android:padding="3dp"
+        android:layout_margin="10dp"
+        android:text="8:00 pm"
+        style="@style/Base.Widget.AppCompat.Button.Borderless"
+        android:background="#2196f3"
         android:id="@+id/select_time"
-        android:layout_height="wrap_content" />
+        android:layout_marginStart="10dp"
+        />
 
 </LinearLayout>

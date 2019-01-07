@@ -12,7 +12,7 @@
             android:layout_width="match_parent"
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
-
+            android:visibility="gone"
             android:id="@+id/posts"
             android:layout_height="wrap_content">
 
@@ -38,6 +38,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
+            android:visibility="gone"
             android:background="#707070"
             />
         <RelativeLayout

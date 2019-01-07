@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
   <ScrollView
@@ -15,7 +17,6 @@
       <de.hdodenhof.circleimageview.CircleImageView
           android:layout_width="match_parent"
           android:layout_height="150dp"
-          android:src="@drawable/psyduck"
           android:id="@+id/imageofbooker"
           android:scaleType="centerCrop"/>
       <TextView
@@ -27,13 +28,12 @@
           android:textColor="#000"
 
           android:layout_margin="10dp"
-          android:text="Turf Name : Atletico"/>
+          />
       <TextView
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:id="@+id/amount"
           android:layout_margin="10dp"
-          android:text="Amount :1000"
           android:layout_gravity="center"
 
           android:textSize="18sp"
@@ -44,7 +44,6 @@
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:id="@+id/slots"
-          android:text="Slot :5-6pm"
           android:layout_gravity="center"
 
           android:textSize="18sp"
@@ -62,7 +61,6 @@
           android:layout_gravity="center"
 
           android:id="@+id/status"
-          android:text="Not payed"
           />
       <TextView
           android:layout_width="wrap_content"
@@ -74,7 +72,6 @@
           android:textColor="#000"
           android:layout_gravity="center"
 
-          android:text="Booking date"
           />
       <Button
           android:layout_width="wrap_content"
@@ -94,6 +91,7 @@
       android:id="@+id/Back"
       android:textColor="#000"
       android:text="Back"
+      android:layout_marginStart="10dp"
 
       android:layout_alignParentBottom="true"
       android:layout_marginRight="10dp"

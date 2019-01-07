@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView
+<androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fff">
@@ -17,7 +17,7 @@
       android:textColor="#000"
       android:id="@+id/selectdate"/>
 
-  <android.support.v7.widget.CardView
+  <androidx.cardview.widget.CardView
       android:layout_width="match_parent"
       android:id="@+id/card"
       android:layout_below="@+id/selectdate"
@@ -46,16 +46,9 @@
         android:inputType="date"
         android:id="@+id/edittext"/>
 
-<android.support.v7.widget.RecyclerView
-    android:layout_width="match_parent"
-    android:id="@+id/recyclerforslot"
-    android:visibility="gone"
-    android:layout_marginStart="10dp"
-    android:layout_marginEnd="10dp"
-    android:layout_below="@id/edittext"
-    android:layout_height="wrap_content"/>
+
     </RelativeLayout>
-  </android.support.v7.widget.CardView>
+  </androidx.cardview.widget.CardView>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -74,4 +67,4 @@
 
 </RelativeLayout>
 
-</android.support.v4.widget.NestedScrollView>
+</androidx.core.widget.NestedScrollView>

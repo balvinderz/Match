@@ -1,25 +1,25 @@
 package tiredcoder.com.match;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
-
-import org.json.JSONException;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -69,6 +69,11 @@ public class AccountSetting extends AppCompatActivity {
         fileName=preferences.getString("image",null);
         email.setText(preferences.getString("email",null));
         password.setText(preferences.getString("password",null));
+        if(ContextCompat.checkSelfPermission(AccountSetting.this,Manifest.permission.WRITE_EXTERNAL_STORAGE)!=PackageManager.PERMISSION_GRANTED)
+        {
+            ActivityCompat.requestPermissions(AccountSetting.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 101);
+
+        }
         if(Constants.checknet(AccountSetting.this))
             Picasso.get().load(Constants.ip+"img/"+preferences.getString("image",null)).into(imageView);
       //  new ImageLoader(Constants.ip+"Turf/img/"+preferences.getString("image",null),imageView).execute();

@@ -23,15 +23,11 @@ import java.net.URLEncoder;
 public class  SigninActivity extends AsyncTask<String,String,String> {
     private Context context;
     private  int flag;
-    private TextView bookingid,emailid;
     JSONObject jsonObject;
     String mobileno,pass;
-    public SigninActivity(Context context,TextView bookingid,TextView emailid,int flag)
+    public SigninActivity(Context context)
     {
-        this.flag=flag;
         this.context=context;
-        this.bookingid=bookingid;
-        this.emailid=emailid;
     }
     protected  void onPreExecute()
     {
@@ -138,13 +134,16 @@ public class  SigninActivity extends AsyncTask<String,String,String> {
                     context.startActivity(intent);
                 }
                 else {
-                    intent = new Intent(context, Home.class);
+                    intent = new Intent(context, BookTurf.class);
 
        //             intent = new Intent(context, Admin.class);
                     intent.putExtra("mobileno", mobileno);
                     intent.putExtra("pass", pass);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-
+                    SharedPreferences.Editor editor=context.getSharedPreferences("userinfo",Context.MODE_PRIVATE).edit();
+                    editor.putString("password",pass);
+                    editor.putString("mobileno",mobileno);
+                            editor.apply();
                     context.startActivity(intent)
                     ;
                 }

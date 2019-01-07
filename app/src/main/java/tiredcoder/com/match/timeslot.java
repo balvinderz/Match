@@ -1,28 +1,28 @@
 package tiredcoder.com.match;
 
 public class timeslot  {
-    int selected;
+    int available;
     String time;
     timeslot()
     {
     }
-    public timeslot(int selected, String time) {
-        this.selected = selected;
+    public timeslot(int available, String time) {
+        this.available = available;
         this.time = time;
     }
 
-    public void setSelected(int selected) {
+    public void setAvailable(int selected) {
 
-        this.selected = selected;
+        this.available = available;
     }
 
     public void setTime(String time) {
         this.time = time;
     }
 
-    public int getSelected() {
+    public int getAvailable() {
 
-        return selected;
+        return available;
     }
 
     public String getTime() {

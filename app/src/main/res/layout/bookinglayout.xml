@@ -4,14 +4,21 @@
     android:orientation="vertical"
     android:background="#fff"
     android:layout_height="wrap_content">
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:id="@+id/adminpic"
+        android:layout_gravity="center"
+       />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/turf"
+        android:layout_gravity="center"
         android:textSize="18sp"
         android:textColor="#000"
-        android:fontFamily="sans-serif-condensed"
-        android:text="Placeholder turf name"/>
+        android:layout_marginTop="10dp"
+        />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -19,9 +26,8 @@
         android:layout_marginTop="10dp"
         android:textSize="18sp"
         android:textColor="#000"
-
-        android:fontFamily="sans-serif-condensed"
-        android:text="@string/placeholder_status"/>
+        android:layout_gravity="center"
+        />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -29,9 +35,9 @@
         android:layout_marginTop="10dp"
         android:textSize="18sp"
         android:textColor="#000"
+        android:layout_gravity="center"
 
-        android:fontFamily="sans-serif-condensed"
-        android:text="@string/placeholder_date"/>
+        />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -39,29 +45,28 @@
         android:layout_marginTop="10dp"
         android:textSize="18sp"
         android:textColor="#000"
+        android:layout_gravity="center"
 
-        android:fontFamily="sans-serif-condensed"
-        android:text="@string/placeholder_time"/>
+        />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/amountforbooking"
         android:layout_marginTop="10dp"
         android:textColor="#000"
+        android:layout_gravity="center"
 
         android:textSize="18sp"
-        android:fontFamily="sans-serif-condensed"
-        android:text="@string/placeholder_amount"/>
+        />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/nameinbooking"
         android:layout_marginTop="10dp"
         android:textColor="#000"
-
+        android:layout_gravity="center"
         android:textSize="18sp"
-        android:fontFamily="sans-serif-condensed"
-        android:text="Placeholder name"/>
+        />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -69,9 +74,20 @@
         android:layout_marginTop="10dp"
         android:textSize="18sp"
         android:textColor="#000"
+        android:visibility="gone"
+        android:layout_gravity="center"
 
-        android:fontFamily="sans-serif-condensed"
-        android:text="Placeholder number"/>
+        />
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        style="@style/Base.Widget.AppCompat.Button.Borderless"
+        android:text="Cancel"
+        android:id="@+id/cancelbutton"
+        android:background="@color/green"
+        android:layout_gravity="center"
+        />
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"

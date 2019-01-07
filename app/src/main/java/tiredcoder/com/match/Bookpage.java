@@ -1,11 +1,10 @@
 package tiredcoder.com.match;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -68,8 +67,9 @@ public class Bookpage extends AppCompatActivity {
         paynow=findViewById(R.id.paynow);
         totalview.setText(String.valueOf(total));
         Picasso.get().load(Constants.ip+"img/"+preferences.getString("image",null)).into(imageView);
+        paylater.setVisibility(View.GONE);
         numberofslotsbooked.setText(String.valueOf(numberofslots));
-        paylater.setOnClickListener(new View.OnClickListener() {
+      /*  paylater.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 for (int i = 0; i < numberofslots; i++) {
@@ -88,7 +88,7 @@ public class Bookpage extends AppCompatActivity {
                 BookTurf.integerSet.clear();
             //    new BookTurf.getTimeSlots(date),BookTurf.this).execute();
             }
-        });
+        }); */
         paynow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -269,7 +269,7 @@ public class Bookpage extends AppCompatActivity {
         protected void onPostExecute(String result)
         {
             Toast.makeText(Bookpage.this,"Booked successfully",Toast.LENGTH_SHORT).show();
-            Intent intent=new Intent(Bookpage.this,Home.class);
+            Intent intent=new Intent(Bookpage.this,BookTurf.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
             intent.putExtra("mobileno",mobile);
             intent.putExtra("pass",preferences.getString("password",null));

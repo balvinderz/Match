@@ -18,9 +18,9 @@
 
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:src="@drawable/logo"/>
+            android:src="@drawable/newlogo"/>
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="270dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="100dp"
@@ -35,8 +35,8 @@
                 android:textColor="#fff"
 
                 android:hint="Mobile Number" />
-        </android.support.design.widget.TextInputLayout>
-        <android.support.design.widget.TextInputLayout
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="270dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -49,7 +49,7 @@
                 android:inputType="textPassword"
                 android:textColor="#fff"
                 android:hint="Password" />
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

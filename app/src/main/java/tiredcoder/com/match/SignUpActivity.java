@@ -25,6 +25,7 @@ public class SignUpActivity extends AsyncTask<String,String,String> {
     Context context;
     JSONObject jsonObject;
     ProgressDialog dialog;
+    String mobileno,password;
     SignUpActivity(Context context)
     {
         this.context=context;
@@ -41,8 +42,8 @@ public class SignUpActivity extends AsyncTask<String,String,String> {
     {
         String name=args[0];
         String emailid=args[1];
-        String mobileno=args[2];
-        String password=args[3];
+         mobileno=args[2];
+         password=args[3];
         String username=args[4];
         try
         {
@@ -99,6 +100,8 @@ public class SignUpActivity extends AsyncTask<String,String,String> {
         if(success.equals("1"))
       {
           Toast.makeText(context,"Id created Successfully",Toast.LENGTH_SHORT).show();
+          new SigninActivity(context).execute(mobileno,password);
+
 
       }
       else

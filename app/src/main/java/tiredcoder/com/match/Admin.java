@@ -2,13 +2,11 @@ package tiredcoder.com.match;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
-
-import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -79,6 +77,8 @@ public class getbookings extends AsyncTask<String,String,String>
                 booking.setTime((String)object.get("booking_time"));
                 booking.setPaymentstatus((String)object.get("payment_status"));
                 Log.i("loggingdetailsturf","marja");
+                booking.setId((String) object.get("id"));
+                booking.setImage((String) object.get("image"));
                 bookingclass.add(booking);
             }
         } catch (JSONException e) {

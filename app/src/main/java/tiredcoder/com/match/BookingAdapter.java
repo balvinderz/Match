@@ -1,11 +1,12 @@
 package tiredcoder.com.match;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -20,6 +21,8 @@ public class BookingAdapter  extends RecyclerView.Adapter<BookingAdapter.MyViewH
     public  class  MyViewHolder extends RecyclerView.ViewHolder
     {
         public TextView turfname,name,status,Date,time,amount,number;
+        CircleImageView imageView;
+        Button cancel;
         public  MyViewHolder(View view)
         {
             super(view);
@@ -29,7 +32,9 @@ public class BookingAdapter  extends RecyclerView.Adapter<BookingAdapter.MyViewH
             Date=view.findViewById(R.id.Date);
             time=view.findViewById(R.id.Time);
             amount=view.findViewById(R.id.amountforbooking);
+            cancel=view.findViewById(R.id.cancelbutton);
             number=view.findViewById(R.id.numberinbooking);
+            imageView=view.findViewById(R.id.adminpic);
         }
 
     }
@@ -47,9 +52,9 @@ public class BookingAdapter  extends RecyclerView.Adapter<BookingAdapter.MyViewH
         return new BookingAdapter.MyViewHolder(itemView);
     }
     @Override
-    public void onBindViewHolder(@NonNull BookingAdapter.MyViewHolder holder, int position)
+    public void onBindViewHolder(@NonNull final BookingAdapter.MyViewHolder holder, int position)
     {
-        Bookingclass booking=bookingclasses.get(position);
+        final Bookingclass booking=bookingclasses.get(position);
         //     new ImageLoader("192.168.1.103/Turf/img/"+comment.getImage(),holder.imageView).execute();
         holder.number.setText("Mobile number : "+booking.getNumber());
         holder.amount.setText("Amount : "+booking.getAmount());
@@ -58,6 +63,24 @@ public class BookingAdapter  extends RecyclerView.Adapter<BookingAdapter.MyViewH
         holder.turfname.setText("Turf name : "+booking.getTurfname());
         holder.Date.setText("Date : "+booking.getBookingdate());
         holder.time.setText("Time : "+booking.getSlot());
+        if(holder.status.getText().toString().equals("Payment Status : unpaid"))
+        {
+            holder.cancel.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            holder.cancel.setVisibility(View.GONE);
+        }
+
+        Picasso.get().load(Constants.ip+"img/"+booking.getImage()).into(holder.imageView);
+        holder.cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new cancerbooking(context,booking.getId()).execute();
+            bookingclasses.remove(booking);
+            notifyDataSetChanged();
+            }
+        });
     }
     @Override
     public int getItemCount() {

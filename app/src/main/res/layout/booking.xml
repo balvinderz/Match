@@ -8,10 +8,23 @@
   android:layout_width="match_parent"
 
     android:layout_height="wrap_content">
+<androidx.appcompat.widget.Toolbar
+    android:layout_width="match_parent"
+    android:id="@+id/toolbarinbooking"
+    android:background="@color/colorPrimary"
+    android:layout_height="?attr/actionBarSize"
+    >
 
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="60dp"
+        android:src="@drawable/newlogo"
+        android:layout_height="?attr/actionBarSize" />
+
+</androidx.appcompat.widget.Toolbar>
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
+        android:layout_below="@id/toolbarinbooking"
         android:layout_height="wrap_content">
     <ImageView
         android:layout_width="match_parent"
